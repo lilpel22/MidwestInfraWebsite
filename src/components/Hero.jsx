@@ -11,9 +11,10 @@ export default function Hero() {
           alt="Midwest Infra operations"
           className="w-full h-full object-cover object-center"
         />
-        {/* Layered overlays for depth */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-deep/92 via-primary-deep/70 to-primary-deep/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary-deep/70 via-transparent to-transparent" />
+        {/* Grey gradient — dark on the left under the title, fades to transparent right */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+        {/* Bottom fade for grounding */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
       </div>
 
       {/* Content */}
@@ -66,13 +67,13 @@ export default function Hero() {
           >
             <a
               href="#services"
-              className="px-8 py-4 bg-secondary text-white font-oswald text-sm font-semibold tracking-[0.22em] uppercase hover:bg-secondary-dark transition-all duration-300 shadow-lg hover:-translate-y-0.5"
+              className="px-8 py-4 bg-secondary text-white font-oswald text-sm font-semibold tracking-[0.22em] uppercase hover:bg-secondary-dark transition-colors duration-200"
             >
               Our Services
             </a>
             <a
               href="#contact"
-              className="px-8 py-4 border border-white/40 text-white font-oswald text-sm font-semibold tracking-[0.22em] uppercase hover:border-white hover:bg-white/10 transition-all duration-300"
+              className="px-8 py-4 border border-white/40 text-white font-oswald text-sm font-semibold tracking-[0.22em] uppercase hover:border-white hover:bg-white/10 transition-colors duration-200"
             >
               Get a Quote
             </a>

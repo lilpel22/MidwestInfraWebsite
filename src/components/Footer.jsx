@@ -66,15 +66,6 @@ export default function Footer() {
 
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span className="font-roboto text-xs text-white/22">
-            © {new Date().getFullYear()} Midwest Infra. All rights reserved.
-          </span>
-          <span className="font-oswald text-[10px] tracking-[0.25em] uppercase text-white/20">
-            Certified SprayROQ™ Michigan Partner
-          </span>
-        </div>
       </div>
     </footer>
   )

@@ -102,27 +102,10 @@ function ProjectCard({ project, index }) {
             {project.title}
           </h3>
 
-          {/* Description — revealed on hover via max-height */}
-          <div className="overflow-hidden max-h-0 group-hover:max-h-28 transition-[max-height] duration-500 delay-100">
-            <p className="font-roboto text-xs text-white/75 font-light leading-relaxed pb-1">
-              {project.summary}
-            </p>
-          </div>
-
-          {/* "View Project" link — revealed on hover */}
-          <div className="overflow-hidden max-h-0 group-hover:max-h-10 transition-[max-height] duration-500 delay-150">
-            <div className="flex items-center gap-2 pt-3 border-t border-white/15 mt-1">
-              <span className="font-oswald text-[10px] tracking-[0.22em] uppercase text-white/55">
-                View Project
-              </span>
-              <svg
-                className="w-3.5 h-3.5 text-secondary"
-                fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </div>
-          </div>
+          {/* Description — always visible */}
+          <p className="font-roboto text-xs text-white/65 group-hover:text-white/85 font-light leading-relaxed transition-colors duration-300">
+            {project.summary}
+          </p>
         </div>
       </div>
     </motion.article>
