@@ -1,165 +1,163 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import { caseStudies } from '../data/caseStudies'
 
-const projects = [
-  {
-    id: '01',
-    title: 'Manhole Structural Renewal',
-    location: 'Oakland County, MI',
-    tag: 'SprayROQ Coatings',
-    summary:
-      '38 aging brick-and-mortar manholes rehabilitated with SprayWall® polyurethane structural lining. I&I reduced by 91% — an estimated $2.1M in replacement costs avoided.',
-  },
-  {
-    id: '02',
-    title: 'CMP Culvert Rehabilitation',
-    location: 'MDOT District 5 / M-53',
-    tag: 'Structural Lining',
-    summary:
-      '120 LF of corrugated metal pipe under M-53 fully relined — no road closure, full load-bearing restoration delivered at under 30% of estimated replacement cost.',
-  },
-  {
-    id: '03',
-    title: 'Lift Station Wet Well Lining',
-    location: 'City of Lapeer, MI',
-    tag: 'Wet Well Rehabilitation',
-    summary:
-      'Full wet well rehabilitation using cementitious resurfacing and SprayWall® H₂S-resistant polyurethane top coat — completed within a 5-day outage window.',
-  },
-]
-
-function ProjectCard({ project, index }) {
+function FeaturedCard({ study }) {
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.14 }}
-      className="group cursor-pointer flex flex-col"
-    >
-      {/* ── Image area (grey placeholder, zooms on hover) ── */}
-      <div className="relative overflow-hidden aspect-[16/10]">
-        {/* Grey placeholder — replace with <img> when real photos arrive */}
-        <div className="absolute inset-0 bg-gradient-to-br from-neutral-400 via-neutral-500 to-neutral-600 transform group-hover:scale-105 transition-transform duration-700 ease-out" />
+    <Link to={`/case-study/${study.id}`} className="group relative block overflow-hidden h-full min-h-[480px]">
+      <img
+        src={study.cardImage}
+        alt={study.title}
+        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-primary-deep/90 via-primary-deep/30 to-transparent" />
 
-        {/* Subtle crosshatch texture on placeholder */}
-        <div
-          className="absolute inset-0 opacity-[0.07]"
-          style={{
-            backgroundImage: `repeating-linear-gradient(
-              45deg,
-              #fff 0px, #fff 1px,
-              transparent 1px, transparent 12px
-            )`,
-          }}
-        />
-
-        {/* Dark gradient — fades on hover to let fill color take over */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent group-hover:opacity-40 transition-opacity duration-500" />
-
-        {/* Project number — top left */}
-        <div className="absolute top-4 left-4 z-10">
-          <span className="font-oswald text-xs tracking-[0.28em] uppercase text-white/50 bg-black/35 backdrop-blur-sm px-2.5 py-1">
-            {project.id}
-          </span>
-        </div>
-
-        {/* Tag badge — top right */}
-        <div className="absolute top-4 right-4 z-10">
-          <span className="font-oswald text-[10px] tracking-[0.22em] uppercase text-secondary bg-black/40 backdrop-blur-sm border border-secondary/35 px-3 py-1.5">
-            {project.tag}
-          </span>
-        </div>
-
-        {/* Photo placeholder label */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <span className="font-oswald text-[11px] tracking-[0.3em] uppercase text-white/20">
-            Project Photo
-          </span>
-        </div>
+      <div className="absolute top-6 left-6">
+        <span className="bg-secondary px-3 py-1.5 font-oswald text-[11px] tracking-[0.22em] uppercase text-white">
+          {study.tag}
+        </span>
       </div>
 
-      {/* ── Text panel (color fill sweeps in from left on hover) ── */}
-      <div className="relative overflow-hidden bg-primary-deep flex-1">
-        {/* The fill: primary blue slides in from the left */}
-        <div className="absolute inset-0 bg-primary -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]" />
-
-        <div className="relative z-10 px-6 py-5">
-          {/* Tag + location row */}
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-2 min-w-0">
-              <div className="w-3 h-px bg-secondary flex-shrink-0" />
-              <span className="font-oswald text-[10px] tracking-[0.28em] uppercase text-secondary truncate">
-                {project.tag}
-              </span>
-            </div>
-            <span className="font-roboto text-[10px] text-white/40 group-hover:text-white/60 transition-colors duration-300 ml-3 flex-shrink-0">
-              {project.location}
-            </span>
-          </div>
-
-          {/* Title */}
-          <h3 className="font-oswald text-xl font-bold text-white uppercase leading-tight mb-2">
-            {project.title}
-          </h3>
-
-          {/* Description — always visible */}
-          <p className="font-roboto text-xs text-white/65 group-hover:text-white/85 font-light leading-relaxed transition-colors duration-300">
-            {project.summary}
-          </p>
+      <div className="absolute bottom-0 left-0 right-0 p-8">
+        <div className="font-oswald text-sm tracking-[0.22em] uppercase text-white/75 mb-2">
+          {study.location} · {study.date}
+        </div>
+        <h3 className="font-oswald text-2xl lg:text-3xl font-bold text-white uppercase leading-tight mb-4">
+          {study.title}
+        </h3>
+        <div className="flex items-center gap-2 text-secondary font-oswald text-xs tracking-[0.22em] uppercase opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+          Read Case Study
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
         </div>
       </div>
-    </motion.article>
+    </Link>
+  )
+}
+
+function SmallCard({ study }) {
+  return (
+    <Link to={`/case-study/${study.id}`} className="group relative block overflow-hidden flex-1 min-h-[220px]">
+      <img
+        src={study.cardImage}
+        alt={study.title}
+        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-primary-deep/85 via-primary-deep/20 to-transparent" />
+
+      <div className="absolute top-4 left-4">
+        <span className="bg-white/15 backdrop-blur-sm border border-white/20 px-3 py-1 font-oswald text-[10px] tracking-[0.22em] uppercase text-white">
+          {study.tag}
+        </span>
+      </div>
+
+      <div className="absolute bottom-0 left-0 right-0 p-5">
+        <div className="font-oswald text-sm tracking-[0.2em] uppercase text-white/70 mb-1">
+          {study.location}
+        </div>
+        <h3 className="font-oswald text-lg font-bold text-white uppercase leading-tight">
+          {study.title}
+        </h3>
+        <div className="flex items-center gap-1.5 mt-2 text-secondary font-oswald text-[10px] tracking-[0.2em] uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          View Project
+          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </div>
+      </div>
+    </Link>
   )
 }
 
 export default function Projects() {
+  const [featured, ...rest] = caseStudies
+
   return (
-    <section id="projects" className="bg-primary-deep py-24 lg:py-32 relative overflow-hidden">
-      {/* Subtle grid texture — keeps cohesion with site */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.028]"
-        style={{
-          backgroundImage: `
-            repeating-linear-gradient(0deg, transparent, transparent 39px, #fff 39px, #fff 40px),
-            repeating-linear-gradient(90deg, transparent, transparent 39px, #fff 39px, #fff 40px)
-          `,
-        }}
-      />
+    <section id="projects" className="bg-white py-20 lg:py-28">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
-        {/* Section header — unchanged from rest of site */}
-        <div className="mb-14 lg:mb-16">
+        {/* Section header */}
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10 lg:mb-12">
+          <div>
+            <motion.div
+              initial={{ opacity: 0, x: -14 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="flex items-center gap-3 mb-4"
+            >
+              <div className="w-8 h-px bg-secondary" />
+              <span className="font-oswald text-[11px] tracking-[0.35em] uppercase text-primary font-medium">
+                Project Spotlights
+              </span>
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="font-oswald text-4xl lg:text-5xl font-bold text-primary-deep uppercase leading-tight"
+            >
+              Proven Results<br />
+              <span className="text-primary">Across Michigan</span>
+            </motion.h2>
+          </div>
           <motion.div
-            initial={{ opacity: 0, x: -18 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center gap-3 mb-4"
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="w-8 h-px bg-secondary" />
-            <span className="font-oswald text-xs tracking-[0.32em] uppercase text-secondary font-medium">
-              Project Spotlights
-            </span>
+            <Link
+              to="/our-work"
+              className="inline-flex items-center gap-3 font-oswald text-sm tracking-[0.22em] uppercase text-primary border-b-2 border-secondary pb-0.5 hover:text-secondary transition-colors duration-200 group"
+            >
+              View All Case Studies
+              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
           </motion.div>
+        </div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-oswald text-4xl lg:text-[56px] font-bold text-white uppercase leading-tight"
+        {/* Featured project grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="flex flex-col lg:flex-row gap-3 h-auto lg:h-[560px]"
+        >
+          <div className="flex-none lg:w-[62%]">
+            <FeaturedCard study={featured} />
+          </div>
+          <div className="flex flex-col gap-3 flex-1">
+            {rest.slice(0, 2).map((study) => (
+              <SmallCard key={study.id} study={study} />
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Bottom bar */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-6 flex items-center justify-between py-5 border-t border-gray-100"
+        >
+          <p className="font-roboto text-sm text-gray-600">
+            Showing {Math.min(3, caseStudies.length)} of {caseStudies.length} documented projects
+          </p>
+          <Link
+            to="/our-work"
+            className="font-oswald text-sm tracking-[0.2em] uppercase text-primary hover:text-secondary transition-colors duration-200"
           >
-            Proven Results<br />
-            <span className="text-secondary">Across Michigan</span>
-          </motion.h2>
-        </div>
+            Browse Full Portfolio →
+          </Link>
+        </motion.div>
 
-        {/* Cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-          {projects.map((project, i) => (
-            <ProjectCard key={project.id} project={project} index={i} />
-          ))}
-        </div>
       </div>
     </section>
   )

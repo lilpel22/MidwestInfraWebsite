@@ -1,57 +1,57 @@
 import { motion } from 'framer-motion'
-import heroImage from '../../images/vactruck 1.jpg'
 
 export default function Hero() {
   return (
-    <section className="relative h-screen min-h-[680px] flex items-center overflow-hidden">
-      {/* Background image */}
-      <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Midwest Infra operations"
-          className="w-full h-full object-cover object-center"
-        />
-        {/* Grey gradient — dark on the left under the title, fades to transparent right */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
-        {/* Bottom fade for grounding */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-      </div>
+    <section className="flex flex-col lg:flex-row min-h-screen pt-18 lg:pt-20 overflow-hidden">
 
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 w-full pt-20">
-        <div className="max-w-3xl">
-          {/* Eyebrow label */}
+      {/* Left: White editorial panel */}
+      <div className="relative flex-none lg:w-[46%] flex items-center bg-white px-8 sm:px-12 lg:px-14 xl:px-20 py-16 lg:py-0">
+        {/* Left edge accent */}
+        <div className="absolute left-0 top-0 bottom-0 w-1 bg-secondary" />
+
+        <div className="w-full max-w-xl">
+
+          {/* Eyebrow */}
           <motion.div
-            initial={{ opacity: 0, x: -24 }}
+            initial={{ opacity: 0, x: -16 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             className="flex items-center gap-3 mb-7"
           >
-            <div className="w-10 h-px bg-secondary" />
-            <span className="font-oswald text-xs tracking-[0.32em] uppercase text-secondary font-medium">
-              Certified SprayROQ™ Michigan Partner
+            <div className="w-6 h-px bg-secondary" />
+            <span className="font-oswald text-[11px] tracking-[0.3em] uppercase text-primary font-medium">
+              Certified Sprayroq™ Michigan Partner
             </span>
           </motion.div>
 
-          {/* Main headline */}
+          {/* Headline */}
           <motion.h1
-            initial={{ opacity: 0, y: 36 }}
+            initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.3 }}
-            className="font-oswald text-5xl sm:text-6xl lg:text-7xl xl:text-[82px] font-bold text-white uppercase leading-[0.93] tracking-tight mb-7"
+            transition={{ duration: 0.75, delay: 0.22 }}
+            className="font-oswald text-[52px] sm:text-6xl xl:text-[70px] font-bold text-primary-deep uppercase leading-[0.9] tracking-tight mb-7"
           >
             Michigan's<br />
-            <span className="text-secondary">Trenchless</span><br />
-            Infrastructure<br />
+            Trenchless<br />
+            <span className="text-primary">Infrastructure</span><br />
             Specialists
           </motion.h1>
 
+          {/* Divider rule */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.7, delay: 0.5, ease: 'easeOut' }}
+            style={{ transformOrigin: 'left' }}
+            className="h-px bg-gray-200 mb-7"
+          />
+
           {/* Subheadline */}
           <motion.p
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.48 }}
-            className="font-roboto text-base lg:text-lg text-white/70 font-light leading-relaxed mb-10 max-w-[540px]"
+            transition={{ duration: 0.6, delay: 0.55 }}
+            className="font-roboto text-base lg:text-lg text-gray-700 font-light leading-relaxed mb-10 max-w-md"
           >
             Spray-applied structural lining for CMP culverts, manholes, lift stations,
             and wet wells — non-destructive rehabilitation for municipalities, MDOT,
@@ -60,20 +60,20 @@ export default function Hero() {
 
           {/* CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 18 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.62 }}
-            className="flex flex-wrap gap-4"
+            transition={{ duration: 0.5, delay: 0.68 }}
+            className="flex flex-wrap gap-3"
           >
             <a
               href="#services"
-              className="px-8 py-4 bg-secondary text-white font-oswald text-sm font-semibold tracking-[0.22em] uppercase hover:bg-secondary-dark transition-colors duration-200"
+              className="px-8 py-3.5 bg-primary text-white font-oswald text-sm font-semibold tracking-[0.2em] uppercase hover:bg-primary-dark transition-colors duration-200"
             >
               Our Services
             </a>
             <a
-              href="#contact"
-              className="px-8 py-4 border border-white/40 text-white font-oswald text-sm font-semibold tracking-[0.22em] uppercase hover:border-white hover:bg-white/10 transition-colors duration-200"
+              href="/contact"
+              className="px-8 py-3.5 border-2 border-primary text-primary font-oswald text-sm font-semibold tracking-[0.2em] uppercase hover:bg-primary hover:text-white transition-all duration-200"
             >
               Get a Quote
             </a>
@@ -81,22 +81,38 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Right: Full-bleed image panel */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.3 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        transition={{ duration: 1, delay: 0.05 }}
+        className="relative flex-1 h-[55vw] sm:h-[45vw] lg:h-auto min-h-[400px]"
       >
-        <span className="font-oswald text-[10px] tracking-[0.35em] uppercase text-white/35">
-          Scroll
-        </span>
-        <motion.div
-          animate={{ y: [0, 9, 0] }}
-          transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
-          className="w-px h-9 bg-gradient-to-b from-secondary/80 to-transparent"
+        <img
+          src="/images/20241203-DJI_20241203094827_0009_D.jpg"
+          alt="Midwest Infra aerial jobsite operations"
+          className="absolute inset-0 w-full h-full object-cover object-center"
         />
+        {/* Subtle blue wash */}
+        <div className="absolute inset-0 bg-primary/25 mix-blend-multiply" />
+        {/* Bottom vignette */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+
+        {/* Certification stamp */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 1.1 }}
+          className="absolute top-8 right-8 w-24 h-24 rounded-full bg-white/95 backdrop-blur-sm shadow-xl flex flex-col items-center justify-center text-center border-2 border-secondary/30"
+        >
+          <div className="font-oswald text-[8px] tracking-[0.2em] uppercase text-secondary mb-0.5">Certified</div>
+          <div className="font-oswald text-xs font-bold text-primary-deep uppercase leading-tight">
+            Sprayroq™<br />Partner
+          </div>
+          <div className="font-oswald text-[8px] tracking-[0.15em] uppercase text-gray-500 mt-0.5">Michigan</div>
+        </motion.div>
       </motion.div>
+
     </section>
   )
 }

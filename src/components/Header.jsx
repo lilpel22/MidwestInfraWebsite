@@ -1,59 +1,70 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link, useLocation } from 'react-router-dom'
 import logo from '../../logos/Midwest Infra logo1.png'
 
 const serviceItems = [
-  { label: 'SprayROQ Structural Coatings', href: '#services' },
-  { label: 'High-Pressure Sewer Jetting', href: '#services' },
-  { label: 'Hydrovac Services', href: '#services' },
+  { label: 'Sprayroq Structural Coatings', href: '/services/sprayroq-coatings' },
+  { label: 'High-Pressure Hot Water Sewer Jetting', href: '/services/sewer-jetting' },
+  { label: 'Hydrovac Services', href: '/services/hydrovac' },
 ]
 
-export default function Header() {
-  const [scrolled, setScrolled] = useState(false)
+export default function Header({ forceScrolled = false }) {
+  const [scrolled, setScrolled] = useState(forceScrolled)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
+  const location = useLocation()
+  const isHome = location.pathname === '/'
 
   useEffect(() => {
+    if (forceScrolled) {
+      setScrolled(true)
+      return
+    }
     const handleScroll = () => setScrolled(window.scrollY > 60)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [forceScrolled])
 
   const close = () => setMobileOpen(false)
 
-  // Text color switches based on header background
-  const navText = scrolled
-    ? 'text-gray-900 hover:text-secondary'
-    : 'text-white hover:text-secondary'
-
-  const barColor = scrolled ? 'bg-gray-900' : 'bg-white'
+  const handleAnchorClick = (href) => {
+    close()
+    if (isHome && href.startsWith('/#')) {
+      const id = href.replace('/#', '')
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white shadow-md'
-          : 'bg-gradient-to-b from-black/65 to-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-20 lg:h-24">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100 shadow-sm">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-18 lg:h-20">
 
         {/* Logo */}
-        <a href="#" className="flex-shrink-0">
-          <img src={logo} alt="Midwest Infra" className="h-11 lg:h-13 w-auto" />
-        </a>
+        <Link to="/" className="flex-shrink-0 flex items-center gap-3">
+          <div className="w-1 h-9 bg-secondary hidden sm:block" />
+          <img src={logo} alt="Midwest Infra" className="h-10 lg:h-11 w-auto" />
+        </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-9">
+        <nav className="hidden lg:flex items-center gap-8">
 
           {/* Services dropdown */}
           <div
-            className="relative"
+            className="relative flex items-center"
             onMouseEnter={() => setServicesOpen(true)}
             onMouseLeave={() => setServicesOpen(false)}
           >
-            <button className={`flex items-center gap-1.5 font-oswald text-sm font-medium tracking-[0.18em] uppercase transition-colors duration-200 ${navText}`}>
+            <Link
+              to="/services"
+              className="font-oswald text-sm font-medium tracking-[0.15em] uppercase text-gray-700 hover:text-primary transition-colors duration-200 pb-0.5 border-b-2 border-transparent hover:border-secondary"
+            >
               Services
+            </Link>
+            <button
+              className="ml-1 p-0.5 text-gray-500 hover:text-primary transition-colors duration-200"
+              aria-label="Toggle services menu"
+            >
               <svg
                 className={`w-3 h-3 transition-transform duration-200 ${servicesOpen ? 'rotate-180' : ''}`}
                 fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
@@ -65,22 +76,23 @@ export default function Header() {
             <AnimatePresence>
               {servicesOpen && (
                 <motion.div
-                  initial={{ opacity: 0, y: -8, scaleY: 0.94 }}
-                  animate={{ opacity: 1, y: 0, scaleY: 1 }}
-                  exit={{ opacity: 0, y: -8, scaleY: 0.94 }}
+                  initial={{ opacity: 0, y: -6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
                   transition={{ duration: 0.15, ease: 'easeOut' }}
-                  style={{ transformOrigin: 'top' }}
-                  className="absolute top-full left-0 mt-3 w-64 bg-white border-t-2 border-secondary shadow-xl"
+                  className="absolute top-full left-0 mt-2 w-max min-w-[340px] bg-white border border-gray-100 shadow-xl shadow-gray-200/60"
                 >
+                  <div className="h-0.5 bg-secondary w-full" />
                   {serviceItems.map((item, i) => (
-                    <a
+                    <Link
                       key={i}
-                      href={item.href}
-                      className="flex items-center gap-3 px-5 py-3.5 text-gray-700 font-roboto text-sm hover:text-secondary hover:bg-gray-50 transition-all duration-150 border-b border-gray-100 last:border-0"
+                      to={item.href}
+                      onClick={() => setServicesOpen(false)}
+                      className="flex items-center gap-3 px-5 py-3.5 text-gray-600 font-roboto text-sm hover:text-primary hover:bg-gray-50 transition-all duration-150 border-b border-gray-50 last:border-0 whitespace-nowrap"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-secondary/60 flex-shrink-0" />
+                      <span className="w-1 h-1 rounded-full bg-secondary flex-shrink-0" />
                       {item.label}
-                    </a>
+                    </Link>
                   ))}
                 </motion.div>
               )}
@@ -88,25 +100,37 @@ export default function Header() {
           </div>
 
           {[
-            { label: 'Our Work', href: '#projects' },
-            { label: 'About', href: '#about' },
-            { label: 'Contact Us', href: '#contact' },
-          ].map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className={`font-oswald text-sm font-medium tracking-[0.18em] uppercase transition-colors duration-200 ${navText}`}
-            >
-              {link.label}
-            </a>
-          ))}
+            { label: 'Our Work', href: '/our-work', isRoute: true },
+            { label: 'About', href: '/#about' },
+            { label: 'Contact', href: '/contact', isRoute: true },
+          ].map((link) =>
+            link.isRoute ? (
+              <Link
+                key={link.label}
+                to={link.href}
+                className="font-oswald text-sm font-medium tracking-[0.15em] uppercase text-gray-700 hover:text-primary transition-colors duration-200 pb-0.5 border-b-2 border-transparent hover:border-secondary"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <Link
+                key={link.label}
+                to={link.href}
+                onClick={() => handleAnchorClick(link.href)}
+                className="font-oswald text-sm font-medium tracking-[0.15em] uppercase text-gray-700 hover:text-primary transition-colors duration-200 pb-0.5 border-b-2 border-transparent hover:border-secondary"
+              >
+                {link.label}
+              </Link>
+            )
+          )}
 
-          <a
-            href="#contact"
-            className="ml-2 px-7 py-3 bg-secondary text-white font-oswald text-sm font-semibold tracking-[0.18em] uppercase hover:bg-secondary-dark transition-colors duration-200"
+          <Link
+            to="/#contact"
+            onClick={() => handleAnchorClick('/#contact')}
+            className="ml-1 px-6 py-2.5 border-2 border-primary text-primary font-oswald text-sm font-semibold tracking-[0.18em] uppercase hover:bg-primary hover:text-white transition-all duration-200"
           >
             Get a Quote
-          </a>
+          </Link>
         </nav>
 
         {/* Mobile hamburger */}
@@ -115,9 +139,9 @@ export default function Header() {
           className="lg:hidden w-10 h-10 flex flex-col justify-center items-center gap-1.5"
           aria-label="Toggle menu"
         >
-          <span className={`block w-6 h-0.5 transition-all duration-300 origin-center ${barColor} ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
-          <span className={`block w-6 h-0.5 transition-all duration-300 ${barColor} ${mobileOpen ? 'opacity-0' : ''}`} />
-          <span className={`block w-6 h-0.5 transition-all duration-300 origin-center ${barColor} ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+          <span className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 origin-center ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
+          <span className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ${mobileOpen ? 'opacity-0' : ''}`} />
+          <span className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 origin-center ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
         </button>
       </div>
 
@@ -128,60 +152,63 @@ export default function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className={`lg:hidden overflow-hidden border-t ${
-              scrolled
-                ? 'bg-white border-gray-200'
-                : 'bg-primary-deep/98 backdrop-blur-md border-white/10'
-            }`}
+            transition={{ duration: 0.22, ease: 'easeInOut' }}
+            className="lg:hidden overflow-hidden border-t border-gray-100 bg-white"
           >
             <div className="px-6 py-6 flex flex-col gap-5">
-              <a
-                href="#services"
+              <Link
+                to="/services"
                 onClick={close}
-                className={`font-oswald text-lg tracking-[0.15em] uppercase hover:text-secondary transition-colors ${
-                  scrolled ? 'text-gray-900' : 'text-white'
-                }`}
+                className="font-oswald text-lg tracking-[0.12em] uppercase text-gray-800 hover:text-primary transition-colors"
               >
                 Services
-              </a>
-              <div className={`pl-4 flex flex-col gap-3 border-l border-secondary/40`}>
+              </Link>
+              <div className="pl-4 flex flex-col gap-3 border-l-2 border-secondary/40">
                 {serviceItems.map((s) => (
-                  <a
+                  <Link
                     key={s.label}
-                    href={s.href}
+                    to={s.href}
                     onClick={close}
-                    className={`font-roboto text-sm hover:text-secondary transition-colors ${
-                      scrolled ? 'text-gray-600' : 'text-white/60'
-                    }`}
+                    className="font-roboto text-sm text-gray-500 hover:text-primary transition-colors"
                   >
                     {s.label}
-                  </a>
+                  </Link>
                 ))}
               </div>
+
               {[
-                { label: 'Our Work', href: '#projects' },
-                { label: 'About', href: '#about' },
-                { label: 'Contact Us', href: '#contact' },
-              ].map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={close}
-                  className={`font-oswald text-lg tracking-[0.15em] uppercase hover:text-secondary transition-colors ${
-                    scrolled ? 'text-gray-900' : 'text-white'
-                  }`}
-                >
-                  {link.label}
-                </a>
-              ))}
-              <a
-                href="#contact"
-                onClick={close}
-                className="mt-2 py-3.5 bg-secondary text-white font-oswald text-sm font-semibold tracking-[0.18em] uppercase text-center hover:bg-secondary-dark transition-colors duration-200"
+                { label: 'Our Work', href: '/our-work', isRoute: true },
+                { label: 'About', href: '/#about' },
+                { label: 'Contact', href: '/contact', isRoute: true },
+              ].map((link) =>
+                link.isRoute ? (
+                  <Link
+                    key={link.label}
+                    to={link.href}
+                    onClick={close}
+                    className="font-oswald text-lg tracking-[0.12em] uppercase text-gray-800 hover:text-primary transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <Link
+                    key={link.label}
+                    to={link.href}
+                    onClick={() => handleAnchorClick(link.href)}
+                    className="font-oswald text-lg tracking-[0.12em] uppercase text-gray-800 hover:text-primary transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
+
+              <Link
+                to="/#contact"
+                onClick={() => handleAnchorClick('/#contact')}
+                className="mt-2 py-3.5 border-2 border-primary text-primary font-oswald text-sm font-semibold tracking-[0.18em] uppercase text-center hover:bg-primary hover:text-white transition-all duration-200"
               >
                 Get a Quote
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}

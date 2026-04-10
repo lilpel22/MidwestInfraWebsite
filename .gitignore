@@ -56,6 +56,11 @@ vite.config.ts.timestamp-*
 
 # Misc
 .yarn-integrity
+
+# Large image/media assets (stored locally, not tracked in git)
+public/images/
+images/
+case_studies/
 *.tgz
 .node_repl_history
 .serverless/
