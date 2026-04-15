@@ -49,7 +49,7 @@ export default function WhoWeAre() {
               transition={{ duration: 0.6, delay: 0.18 }}
               className="font-roboto text-base text-gray-600 font-light leading-relaxed mb-5"
             >
-              Midwest Infra is a certified SprayROQ™ partner operating across the State of
+              Midwest Infra is a certified Sprayroq™ partner operating across the State of
               Michigan. We specialize in trenchless structural rehabilitation — preserving aging
               infrastructure assets from the inside without the cost, disruption, or timeline
               of full-replacement construction.
@@ -123,7 +123,7 @@ export default function WhoWeAre() {
                 Certified Partner
               </div>
               <div className="font-oswald text-base font-bold uppercase leading-tight">
-                SprayROQ™<br />Michigan
+                Sprayroq™<br />Michigan
               </div>
             </div>
           </motion.div>

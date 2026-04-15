@@ -2,13 +2,13 @@ import { motion } from 'framer-motion'
 import sprayroqLogo from '../../logos/sprayroq-logo.svg'
 
 const credentials = [
-  'Factory-trained applicator certified directly by SprayROQ',
+  'Factory-trained applicator certified directly by Sprayroq',
   'Authorized to apply SprayWall® structural polyurethane systems',
   'One of a select group of certified Michigan partners',
-  'Quality control protocols aligned with SprayROQ standards',
+  'Quality control protocols aligned with Sprayroq standards',
 ]
 
-export default function SprayROQBanner() {
+export default function SprayroqBanner() {
   return (
     <section className="bg-white border-y border-gray-200 py-16 lg:py-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
@@ -26,7 +26,7 @@ export default function SprayROQBanner() {
           >
             <img
               src={sprayroqLogo}
-              alt="SprayROQ"
+              alt="Sprayroq"
               className="h-16 lg:h-[72px] w-auto"
             />
             <div className="flex items-center gap-2">
@@ -56,13 +56,13 @@ export default function SprayROQBanner() {
             </div>
 
             <h3 className="font-oswald text-2xl lg:text-3xl font-bold text-primary-deep uppercase leading-tight mb-4">
-              Official SprayROQ™ Certified Partner — State of Michigan
+              Official Sprayroq™ Certified Partner — State of Michigan
             </h3>
 
             <p className="font-roboto text-sm text-gray-600 font-light leading-relaxed mb-7 max-w-2xl">
-              Midwest Infra is an authorized, factory-trained SprayROQ™ applicator — one of a
+              Midwest Infra is an authorized, factory-trained Sprayroq™ applicator — one of a
               select few certified partners serving the Michigan market. Our crews are trained
-              directly by SprayROQ on SprayWall® polyurethane application standards, quality
+              directly by Sprayroq on SprayWall® polyurethane application standards, quality
               control protocols, and structural rehabilitation best practices for municipal
               and DOT infrastructure.
             </p>
@@ -103,7 +103,7 @@ export default function SprayROQBanner() {
                 Michigan<br />Partner
               </div>
               <div className="font-oswald text-[9px] tracking-[0.15em] uppercase text-primary/50 mt-0.5">
-                SprayROQ™
+                Sprayroq™
               </div>
             </div>
           </motion.div>

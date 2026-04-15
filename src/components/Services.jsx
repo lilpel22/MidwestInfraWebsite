@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 const services = [
   {
     id: '01',
-    title: 'SprayROQ Structural Coatings',
+    slug: 'sprayroq-coatings',
+    title: 'Sprayroq Structural Coatings',
     subtitle: 'Certified Michigan Partner',
-    description:
-      'Spray-applied polyurethane structural lining for large-diameter CMP culverts, manholes, lift stations, wet wells, tanks, clarifiers, and digesters. SprayWall® technology rehabilitates aging infrastructure from the inside — no excavation, no road disruption, far lower cost than full asset replacement.',
+    image: '/images/sprayservice.jpg',
+    imageAlt: 'SprayWall® polyurethane lining application inside infrastructure',
     capabilities: [
       'SprayWall® polyurethane structural lining',
       'Two-part epoxy & cementitious coatings',
@@ -16,7 +18,7 @@ const services = [
       'H₂S-resistant wet well & lift station lining',
     ],
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10" stroke="currentColor" strokeWidth="1.5">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8" stroke="currentColor" strokeWidth="1.5">
         <path d="M24 4L44 14V34L24 44L4 34V14L24 4Z" />
         <path d="M24 4V44M4 14L44 14M4 34L44 34" strokeOpacity="0.35" />
         <circle cx="24" cy="24" r="5" strokeOpacity="0" fill="currentColor" fillOpacity="0.25" />
@@ -25,10 +27,11 @@ const services = [
   },
   {
     id: '02',
+    slug: 'sewer-jetting',
     title: 'High-Pressure Sewer Jetting',
     subtitle: 'Line Clearing & Preparation',
-    description:
-      'Industrial-grade high-pressure water jetting to clear root intrusion, grease buildup, heavy debris, and blockages from municipal sewer mains, storm drains, and force mains. Restores hydraulic capacity and serves as critical pre-lining pipe preparation for structural rehabilitation work.',
+    image: '/images/vactruck1.jpg',
+    imageAlt: 'Midwest Infra high-pressure sewer jetting truck on-site',
     capabilities: [
       'Root intrusion and grease deposit removal',
       'Heavy blockage and debris clearance',
@@ -38,7 +41,7 @@ const services = [
       'Force main and large-diameter pipe clearing',
     ],
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10" stroke="currentColor" strokeWidth="1.5">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8" stroke="currentColor" strokeWidth="1.5">
         <path d="M6 24C6 24 12 14 24 14C36 14 42 24 42 24" />
         <path d="M6 24C6 24 12 34 24 34C36 34 42 24 42 24" />
         <path d="M3 24H45" strokeDasharray="4 3" strokeOpacity="0.5" />
@@ -48,10 +51,11 @@ const services = [
   },
   {
     id: '03',
+    slug: 'hydrovac',
     title: 'Hydrovac Services',
     subtitle: 'Non-Destructive Excavation',
-    description:
-      'Precision potholing, non-destructive subsurface excavation, and debris removal using pressurized water and high-powered vacuum. Safe for utility exposure, subsurface investigation, catch basin cleanout, and debris removal in environments where mechanical excavation would damage buried infrastructure.',
+    image: '/images/20250812-AR1_2427.jpg',
+    imageAlt: 'Hydrovac precision excavation crew on-site',
     capabilities: [
       'Utility potholing and daylight verification',
       'Non-destructive subsurface excavation',
@@ -61,7 +65,7 @@ const services = [
       'Support for pre-construction investigation',
     ],
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10" stroke="currentColor" strokeWidth="1.5">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8" stroke="currentColor" strokeWidth="1.5">
         <rect x="11" y="5" width="26" height="22" rx="2" />
         <path d="M11 27L5 43H43L37 27" />
         <path d="M24 27V43" strokeOpacity="0.5" />
@@ -111,33 +115,44 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.14 }}
-              className="group bg-white border border-gray-200 hover:border-primary/25 hover:shadow-2xl transition-all duration-500 flex flex-col overflow-hidden"
             >
-              {/* Top accent bar */}
-              <div className="h-1 bg-gradient-to-r from-primary to-secondary" />
+            <Link
+              to={`/services/${service.slug}`}
+              className="group bg-white border border-gray-200 hover:border-primary/25 hover:shadow-2xl transition-all duration-500 flex flex-col overflow-hidden h-full"
+            >
+              {/* Photo */}
+              <div className="relative overflow-hidden h-52">
+                <img
+                  src={service.image}
+                  alt={service.imageAlt}
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+                {/* Dark gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-primary-deep/70 via-primary-deep/20 to-transparent" />
 
-              <div className="p-8 lg:p-9 flex-1 flex flex-col">
-                {/* Number + icon row */}
-                <div className="flex items-start justify-between mb-6">
-                  <span className="font-oswald text-6xl font-bold text-gray-100 group-hover:text-primary/8 transition-colors leading-none select-none">
+                {/* Number badge */}
+                <div className="absolute top-4 left-4">
+                  <span className="font-oswald text-xs tracking-[0.28em] uppercase text-white/60 bg-black/35 backdrop-blur-sm px-2.5 py-1">
                     {service.id}
                   </span>
-                  <div className="text-primary group-hover:text-secondary transition-colors duration-300 mt-1">
-                    {service.icon}
-                  </div>
                 </div>
 
-                {/* Subtitle + Title */}
-                <span className="font-oswald text-[10px] tracking-[0.3em] uppercase text-secondary font-medium mb-1">
-                  {service.subtitle}
-                </span>
+                {/* Icon + subtitle bottom-left */}
+                <div className="absolute bottom-4 left-4 flex items-center gap-2.5">
+                  <div className="text-secondary">
+                    {service.icon}
+                  </div>
+                  <span className="font-oswald text-[10px] tracking-[0.28em] uppercase text-white/80 font-medium">
+                    {service.subtitle}
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-8 lg:p-9 flex-1 flex flex-col">
+                {/* Title */}
                 <h3 className="font-oswald text-xl lg:text-2xl font-bold text-primary-deep uppercase leading-tight mb-4">
                   {service.title}
                 </h3>
-
-                <p className="font-roboto text-sm text-gray-600 font-light leading-relaxed mb-6">
-                  {service.description}
-                </p>
 
                 {/* Capabilities list */}
                 <ul className="space-y-2 mt-auto">
@@ -153,20 +168,18 @@ export default function Services() {
               {/* Card footer CTA */}
               <div className="px-8 lg:px-9 pb-7">
                 <div className="pt-5 border-t border-gray-100">
-                  <a
-                    href="#contact"
-                    className="inline-flex items-center gap-2 font-oswald text-[11px] tracking-[0.22em] uppercase text-primary font-medium hover:text-secondary transition-colors group/link"
-                  >
-                    Request Service
+                  <span className="inline-flex items-center gap-2 font-oswald text-[11px] tracking-[0.22em] uppercase text-primary font-medium group-hover:text-secondary transition-colors">
+                    Learn More
                     <svg
-                      className="w-4 h-4 group-hover/link:translate-x-1 transition-transform"
+                      className="w-4 h-4 group-hover:translate-x-1 transition-transform"
                       fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
-                  </a>
+                  </span>
                 </div>
               </div>
+            </Link>
             </motion.div>
           ))}
         </div>

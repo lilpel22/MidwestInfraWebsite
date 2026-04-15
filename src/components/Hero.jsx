@@ -29,7 +29,7 @@ export default function Hero() {
           >
             <div className="w-10 h-px bg-secondary" />
             <span className="font-oswald text-xs tracking-[0.32em] uppercase text-secondary font-medium">
-              Certified SprayROQ™ Michigan Partner
+              Certified Sprayroq™ Michigan Partner
             </span>
           </motion.div>
 

@@ -1,40 +1,52 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 
+// ─── Formspree config ────────────────────────────────────────────────────────
+// 1. Sign up at formspree.io and create a form pointed at info@mwcc.biz
+// 2. Replace YOUR_FORM_ID below with your form ID (e.g. "xabcdefg")
+const FORMSPREE_ID = 'YOUR_FORM_ID'
+// ─────────────────────────────────────────────────────────────────────────────
+
 const contactDetails = [
-  {
-    label: 'Phone',
-    value: '(810) 721-1933',
-    href: 'tel:8107211933',
-  },
-  {
-    label: 'Email',
-    value: 'info@mwcc.biz',
-    href: 'mailto:info@mwcc.biz',
-  },
-  {
-    label: 'Address',
-    value: '115 E Capac Rd, Imlay City, MI 48444',
-    href: 'https://maps.google.com/?q=115+E+Capac+Rd+Imlay+City+MI+48444',
-  },
-  {
-    label: 'Hours',
-    value: 'Mon–Thu 8am–4:30pm · Fri by appointment',
-  },
+  { label: 'Phone', value: '(810) 721-1933', href: 'tel:8107211933' },
+  { label: 'Email', value: 'info@mwcc.biz', href: 'mailto:info@mwcc.biz' },
+  { label: 'Address', value: '115 E Capac Rd, Imlay City, MI 48444', href: 'https://maps.google.com/?q=115+E+Capac+Rd+Imlay+City+MI+48444' },
+  { label: 'Hours', value: 'Mon–Thu 8am–4:30pm · Fri by appointment' },
 ]
 
+const EMPTY = { name: '', company: '', email: '', phone: '', service: '', message: '' }
+
 export default function Contact() {
-  const [form, setForm] = useState({
-    name: '', company: '', email: '', phone: '', service: '', message: '',
-  })
+  const [form, setForm] = useState(EMPTY)
+  const [status, setStatus] = useState('idle') // idle | submitting | success | error
 
   const handleChange = (e) =>
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Placeholder — client will wire up form submission
+    setStatus('submitting')
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (res.ok) {
+        setStatus('success')
+        setForm(EMPTY)
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
   }
+
+  const inputClass =
+    'w-full bg-transparent border-b border-white/40 text-white font-roboto text-base placeholder-white/60 py-3.5 focus:outline-none focus:border-secondary transition-colors duration-200'
+  const labelClass =
+    'font-oswald text-sm tracking-[0.22em] uppercase text-white font-semibold'
 
   return (
     <section id="contact" className="bg-primary-deep py-24 lg:py-32">
@@ -79,7 +91,6 @@ export default function Contact() {
               clients across Michigan. Contact us for a site assessment and project quote.
             </motion.p>
 
-            {/* Contact details — no icons, just label + value */}
             <div className="space-y-5">
               {contactDetails.map((item, i) => (
                 <motion.div
@@ -93,10 +104,7 @@ export default function Contact() {
                     {item.label}
                   </div>
                   {item.href ? (
-                    <a
-                      href={item.href}
-                      className="font-roboto text-sm text-white/80 hover:text-white transition-colors"
-                    >
+                    <a href={item.href} className="font-roboto text-sm text-white/80 hover:text-white transition-colors">
                       {item.value}
                     </a>
                   ) : (
@@ -114,100 +122,92 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="flex flex-col gap-1">
-                  <label className="font-oswald text-[10px] tracking-[0.25em] uppercase text-white/50">Full Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Jane Smith"
-                    value={form.name}
-                    onChange={handleChange}
-                    className="w-full bg-white/6 border border-white/14 text-white font-roboto text-sm placeholder-white/25 px-4 py-3.5 focus:outline-none focus:border-secondary transition-colors"
-                  />
+            {status === 'success' ? (
+              <div className="flex flex-col items-start justify-center h-full py-12">
+                <div className="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center mb-6">
+                  <svg className="w-6 h-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
                 </div>
-                <div className="flex flex-col gap-1">
-                  <label className="font-oswald text-[10px] tracking-[0.25em] uppercase text-white/50">Company / Organization</label>
-                  <input
-                    type="text"
-                    name="company"
-                    placeholder="City of Lapeer"
-                    value={form.company}
-                    onChange={handleChange}
-                    className="w-full bg-white/6 border border-white/14 text-white font-roboto text-sm placeholder-white/25 px-4 py-3.5 focus:outline-none focus:border-secondary transition-colors"
-                  />
-                </div>
+                <h3 className="font-oswald text-2xl font-bold text-white uppercase mb-3">Message Sent</h3>
+                <p className="font-roboto text-sm text-white/60 leading-relaxed mb-8">
+                  Thanks for reaching out. We'll review your project details and be in touch shortly.
+                </p>
+                <button
+                  onClick={() => setStatus('idle')}
+                  className="font-oswald text-xs tracking-[0.22em] uppercase text-secondary hover:text-white transition-colors duration-200"
+                >
+                  Send Another →
+                </button>
               </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="flex flex-col gap-1">
-                  <label className="font-oswald text-[10px] tracking-[0.25em] uppercase text-white/50">Email Address</label>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="you@organization.gov"
-                    value={form.email}
-                    onChange={handleChange}
-                    className="w-full bg-white/6 border border-white/14 text-white font-roboto text-sm placeholder-white/25 px-4 py-3.5 focus:outline-none focus:border-secondary transition-colors"
-                  />
-                </div>
-                <div className="flex flex-col gap-1">
-                  <label className="font-oswald text-[10px] tracking-[0.25em] uppercase text-white/50">Phone Number</label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    placeholder="(810) 555-0100"
-                    value={form.phone}
-                    onChange={handleChange}
-                    className="w-full bg-white/6 border border-white/14 text-white font-roboto text-sm placeholder-white/25 px-4 py-3.5 focus:outline-none focus:border-secondary transition-colors"
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-1">
-                <label className="font-oswald text-[10px] tracking-[0.25em] uppercase text-white/50">Service of Interest</label>
-                <div className="relative">
-                  <select
-                    name="service"
-                    value={form.service}
-                    onChange={handleChange}
-                    className="w-full bg-primary-deep border border-white/14 text-white/70 font-roboto text-sm px-4 py-3.5 focus:outline-none focus:border-secondary transition-colors appearance-none cursor-pointer"
-                  >
-                    <option value="" disabled>Select a service...</option>
-                    <option value="sprayroq">SprayROQ Structural Coatings</option>
-                    <option value="jetting">High-Pressure Sewer Jetting</option>
-                    <option value="hydrovac">Hydrovac Services</option>
-                    <option value="multiple">Multiple Services</option>
-                    <option value="assessment">Site Assessment / Consultation</option>
-                  </select>
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-white/40">
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                    </svg>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-7">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
+                  <div className="flex flex-col gap-2">
+                    <label className={labelClass}>Full Name</label>
+                    <input type="text" name="name" placeholder="Jane Smith" value={form.name} onChange={handleChange} required className={inputClass} />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label className={labelClass}>Company / Organization</label>
+                    <input type="text" name="company" placeholder="City of Lapeer" value={form.company} onChange={handleChange} className={inputClass} />
                   </div>
                 </div>
-              </div>
 
-              <div className="flex flex-col gap-1">
-                <label className="font-oswald text-[10px] tracking-[0.25em] uppercase text-white/50">Project Details</label>
-                <textarea
-                  name="message"
-                  placeholder="Describe your project — asset type (manhole, culvert, wet well), location, estimated scope, and any known conditions..."
-                  rows={5}
-                  value={form.message}
-                  onChange={handleChange}
-                  className="w-full bg-white/6 border border-white/14 text-white font-roboto text-sm placeholder-white/25 px-4 py-3.5 focus:outline-none focus:border-secondary transition-colors resize-none"
-                />
-              </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
+                  <div className="flex flex-col gap-2">
+                    <label className={labelClass}>Email Address</label>
+                    <input type="email" name="email" placeholder="you@organization.gov" value={form.email} onChange={handleChange} required className={inputClass} />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label className={labelClass}>Phone Number</label>
+                    <input type="tel" name="phone" placeholder="(810) 555-0100" value={form.phone} onChange={handleChange} className={inputClass} />
+                  </div>
+                </div>
 
-              <button
-                type="submit"
-                className="w-full py-4 bg-secondary text-white font-oswald text-sm font-semibold tracking-[0.22em] uppercase hover:bg-secondary-dark transition-colors duration-200"
-              >
-                Submit Request
-              </button>
-            </form>
+                <div className="flex flex-col gap-2">
+                  <label className={labelClass}>Service of Interest</label>
+                  <div className="relative">
+                    <select name="service" value={form.service} onChange={handleChange}
+                      className="w-full bg-transparent border-b border-white/40 text-white/80 font-roboto text-base py-3.5 focus:outline-none focus:border-secondary transition-colors duration-200 appearance-none cursor-pointer"
+                    >
+                      <option value="" disabled className="bg-primary-deep">Select a service...</option>
+                      <option value="sprayroq" className="bg-primary-deep">Sprayroq Structural Coatings</option>
+                      <option value="jetting" className="bg-primary-deep">High-Pressure Sewer Jetting</option>
+                      <option value="hydrovac" className="bg-primary-deep">Hydrovac Services</option>
+                      <option value="multiple" className="bg-primary-deep">Multiple Services</option>
+                      <option value="assessment" className="bg-primary-deep">Site Assessment / Consultation</option>
+                    </select>
+                    <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-white/40">
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label className={labelClass}>Project Details</label>
+                  <textarea name="message" placeholder="Describe your project — asset type (manhole, culvert, wet well), location, estimated scope, and any known conditions..."
+                    rows={5} value={form.message} onChange={handleChange}
+                    className="w-full bg-transparent border-b border-white/40 text-white font-roboto text-base placeholder-white/60 py-3.5 focus:outline-none focus:border-secondary transition-colors duration-200 resize-none"
+                  />
+                </div>
+
+                {status === 'error' && (
+                  <p className="font-roboto text-sm text-red-400">
+                    Something went wrong. Please try again or email us directly at info@mwcc.biz.
+                  </p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={status === 'submitting'}
+                  className="w-full py-4 bg-secondary text-white font-oswald text-sm font-semibold tracking-[0.22em] uppercase hover:bg-secondary-dark transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {status === 'submitting' ? 'Sending…' : 'Submit Request'}
+                </button>
+              </form>
+            )}
           </motion.div>
 
         </div>
