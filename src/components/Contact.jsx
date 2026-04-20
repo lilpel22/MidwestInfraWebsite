@@ -2,12 +2,6 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 
-// ─── Formspree config ────────────────────────────────────────────────────────
-// 1. Sign up at formspree.io and create a form pointed at info@mwcc.biz
-// 2. Replace YOUR_FORM_ID below with your form ID (e.g. "xabcdefg")
-const FORMSPREE_ID = 'YOUR_FORM_ID'
-// ─────────────────────────────────────────────────────────────────────────────
-
 const contactDetails = [
   { label: 'Phone', value: '(810) 721-1933', href: 'tel:8107211933' },
   { label: 'Email', value: 'info@mwcc.biz', href: 'mailto:info@mwcc.biz' },
@@ -24,14 +18,19 @@ export default function Contact() {
   const handleChange = (e) =>
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
 
+  const encode = (data) =>
+    Object.entries(data)
+      .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
+      .join('&')
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus('submitting')
     try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      const res = await fetch('/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(form),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode({ 'form-name': 'contact', 'bot-field': '', ...form }),
       })
       if (res.ok) {
         setStatus('success')
@@ -151,7 +150,9 @@ export default function Contact() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-7">
+              <form name="contact" data-netlify="true" netlify-honeypot="bot-field" onSubmit={handleSubmit} className="space-y-7">
+                <input type="hidden" name="form-name" value="contact" />
+                <input type="hidden" name="bot-field" />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
                   <div className="flex flex-col gap-2">
                     <label htmlFor="contact-name" className={labelClass}>Full Name</label>
