@@ -188,14 +188,15 @@ export default function OurWork() {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 flex-none">
-            <a
-              href="/#contact"
+            <Link
+              to="/contact"
               className="px-8 py-3.5 bg-secondary text-white font-oswald text-sm tracking-[0.18em] uppercase font-semibold hover:bg-secondary-dark transition-colors duration-200 text-center"
             >
               Get a Quote
-            </a>
+            </Link>
             <Link
               to="/"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="px-8 py-3.5 border-2 border-white/25 text-white font-oswald text-sm tracking-[0.18em] uppercase font-semibold hover:border-white/60 transition-colors duration-200 text-center"
             >
               Back to Home

@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { MotionConfig } from 'framer-motion'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Stats from './components/Stats'
@@ -30,15 +31,17 @@ function HomePage() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/case-study/:id" element={<CaseStudyPage />} />
-        <Route path="/our-work" element={<OurWork />} />
-        <Route path="/services/:slug" element={<ServicePage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<ContactPage />} />
-      </Routes>
-    </BrowserRouter>
+    <MotionConfig reducedMotion="user">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/case-study/:id" element={<CaseStudyPage />} />
+          <Route path="/our-work" element={<OurWork />} />
+          <Route path="/services/:slug" element={<ServicePage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<ContactPage />} />
+        </Routes>
+      </BrowserRouter>
+    </MotionConfig>
   )
 }

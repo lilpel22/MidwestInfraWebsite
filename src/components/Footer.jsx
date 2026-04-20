@@ -18,12 +18,12 @@ export default function Footer() {
             <Link to="/">
               <img src={logo} alt="Midwest Infra" className="h-11 w-auto mb-5 opacity-90" />
             </Link>
-            <p className="font-roboto text-sm text-white/40 font-light leading-relaxed max-w-sm mb-6">
+            <p className="font-roboto text-sm text-white/65 font-light leading-relaxed max-w-sm mb-6">
               Certified Sprayroq™ partner providing trenchless structural rehabilitation for
               municipalities, MDOT, county road commissions, and private industrial clients
               across the State of Michigan.
             </p>
-            <address className="not-italic font-roboto text-xs text-white/28 leading-relaxed">
+            <address className="not-italic font-roboto text-xs text-white/55 leading-relaxed">
               115 E Capac Rd, Imlay City, MI 48444
             </address>
           </div>
@@ -38,7 +38,7 @@ export default function Footer() {
                 <li key={s.to}>
                   <Link
                     to={s.to}
-                    className="font-roboto text-sm text-white/40 hover:text-white/70 transition-colors"
+                    className="font-roboto text-sm text-white/65 hover:text-white transition-colors"
                   >
                     {s.label}
                   </Link>
@@ -54,12 +54,12 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               <li>
-                <a href="tel:8107211933" className="font-roboto text-sm text-white/40 hover:text-white/70 transition-colors">
+                <a href="tel:8107211933" className="font-roboto text-sm text-white/65 hover:text-white transition-colors">
                   (810) 721-1933
                 </a>
               </li>
               <li>
-                <a href="mailto:info@mwcc.biz" className="font-roboto text-sm text-white/40 hover:text-white/70 transition-colors">
+                <a href="mailto:info@mwcc.biz" className="font-roboto text-sm text-white/65 hover:text-white transition-colors">
                   info@mwcc.biz
                 </a>
               </li>
@@ -68,13 +68,13 @@ export default function Footer() {
                   href="https://maps.google.com/?q=115+E+Capac+Rd+Imlay+City+MI+48444"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-roboto text-sm text-white/40 hover:text-white/70 transition-colors"
+                  className="font-roboto text-sm text-white/65 hover:text-white transition-colors"
                 >
                   115 E Capac Rd, Imlay City, MI
                 </a>
               </li>
-              <li className="font-roboto text-sm text-white/40">Mon–Thu: 8am–4:30pm</li>
-              <li className="font-roboto text-sm text-white/40">Fri: By Appointment</li>
+              <li className="font-roboto text-sm text-white/65">Mon–Thu: 8am–4:30pm</li>
+              <li className="font-roboto text-sm text-white/65">Fri: By Appointment</li>
             </ul>
           </div>
 

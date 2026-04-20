@@ -16,7 +16,7 @@ const contactDetails = [
 const EMPTY = { name: '', company: '', email: '', phone: '', service: '', message: '' }
 
 const inputClass =
-  'w-full bg-transparent border-b border-white/40 text-white font-roboto text-base placeholder-white/60 py-3.5 focus:outline-none focus:border-secondary transition-colors duration-200'
+  'w-full bg-transparent border-b border-white/40 text-white font-roboto text-base placeholder-white/60 py-3.5 focus:outline-none focus-visible:outline-2 focus-visible:outline focus-visible:outline-secondary focus-visible:outline-offset-4 focus:border-secondary transition-colors duration-200'
 const labelClass = 'font-oswald text-sm tracking-[0.22em] uppercase text-white font-semibold'
 
 export default function ContactPageForm() {
@@ -107,31 +107,31 @@ export default function ContactPageForm() {
             <form onSubmit={handleSubmit} className="space-y-8">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 <div className="flex flex-col gap-2">
-                  <label className={labelClass}>Full Name</label>
-                  <input type="text" name="name" placeholder="Jane Smith" value={form.name} onChange={handleChange} required className={inputClass} />
+                  <label htmlFor="cp-name" className={labelClass}>Full Name</label>
+                  <input id="cp-name" type="text" name="name" placeholder="Jane Smith" value={form.name} onChange={handleChange} required className={inputClass} />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label className={labelClass}>Company / Organization</label>
-                  <input type="text" name="company" placeholder="City of Lapeer" value={form.company} onChange={handleChange} className={inputClass} />
+                  <label htmlFor="cp-company" className={labelClass}>Company / Organization</label>
+                  <input id="cp-company" type="text" name="company" placeholder="City of Lapeer" value={form.company} onChange={handleChange} className={inputClass} />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 <div className="flex flex-col gap-2">
-                  <label className={labelClass}>Email Address</label>
-                  <input type="email" name="email" placeholder="you@organization.gov" value={form.email} onChange={handleChange} required className={inputClass} />
+                  <label htmlFor="cp-email" className={labelClass}>Email Address</label>
+                  <input id="cp-email" type="email" name="email" placeholder="you@organization.gov" value={form.email} onChange={handleChange} required className={inputClass} />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label className={labelClass}>Phone Number</label>
-                  <input type="tel" name="phone" placeholder="(810) 555-0100" value={form.phone} onChange={handleChange} className={inputClass} />
+                  <label htmlFor="cp-phone" className={labelClass}>Phone Number</label>
+                  <input id="cp-phone" type="tel" name="phone" placeholder="(810) 555-0100" value={form.phone} onChange={handleChange} className={inputClass} />
                 </div>
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className={labelClass}>Service of Interest</label>
+                <label htmlFor="cp-service" className={labelClass}>Service of Interest</label>
                 <div className="relative">
-                  <select name="service" value={form.service} onChange={handleChange}
-                    className="w-full bg-transparent border-b border-white/40 text-white/80 font-roboto text-base py-3.5 focus:outline-none focus:border-secondary transition-colors duration-200 appearance-none cursor-pointer"
+                  <select id="cp-service" name="service" value={form.service} onChange={handleChange}
+                    className="w-full bg-transparent border-b border-white/40 text-white/80 font-roboto text-base py-3.5 focus:outline-none focus-visible:outline-2 focus-visible:outline focus-visible:outline-secondary focus-visible:outline-offset-4 focus:border-secondary transition-colors duration-200 appearance-none cursor-pointer"
                   >
                     <option value="" disabled className="bg-primary-deep">Select a service...</option>
                     <option value="sprayroq" className="bg-primary-deep">Sprayroq Structural Coatings</option>
@@ -149,10 +149,10 @@ export default function ContactPageForm() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className={labelClass}>Project Details</label>
-                <textarea name="message" placeholder="Describe your project — asset type, location, estimated scope, and any known conditions..."
+                <label htmlFor="cp-message" className={labelClass}>Project Details</label>
+                <textarea id="cp-message" name="message" placeholder="Describe your project — asset type, location, estimated scope, and any known conditions..."
                   rows={4} value={form.message} onChange={handleChange}
-                  className="w-full bg-transparent border-b border-white/40 text-white font-roboto text-base placeholder-white/60 py-3.5 focus:outline-none focus:border-secondary transition-colors duration-200 resize-none"
+                  className="w-full bg-transparent border-b border-white/40 text-white font-roboto text-base placeholder-white/60 py-3.5 focus:outline-none focus-visible:outline-2 focus-visible:outline focus-visible:outline-secondary focus-visible:outline-offset-4 focus:border-secondary transition-colors duration-200 resize-none"
                 />
               </div>
 

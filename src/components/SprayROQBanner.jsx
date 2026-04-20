@@ -37,8 +37,8 @@ export default function SprayroqBanner() {
             </div>
           </motion.div>
 
-          {/* Vertical divider */}
-          <div className="hidden lg:block w-px self-stretch bg-gray-200" />
+          {/* Divider — horizontal on mobile, vertical on desktop */}
+          <div className="w-full h-px bg-gray-200 lg:w-px lg:h-auto lg:self-stretch" />
 
           {/* Text content */}
           <motion.div
@@ -49,14 +49,14 @@ export default function SprayroqBanner() {
             className="flex-1 text-center lg:text-left"
           >
             <div className="flex items-center justify-center lg:justify-start gap-3 mb-3">
-              <div className="w-6 h-px bg-secondary hidden lg:block" />
+              <div className="w-8 h-px bg-secondary hidden lg:block" />
               <span className="font-oswald text-xs tracking-[0.32em] uppercase text-secondary font-medium">
                 Certified Partner
               </span>
             </div>
 
             <h3 className="font-oswald text-2xl lg:text-3xl font-bold text-primary-deep uppercase leading-tight mb-4">
-              Official Sprayroq™ Certified Partner — State of Michigan
+              Official Sprayroq™ Certified Partner
             </h3>
 
             <p className="font-roboto text-sm text-gray-600 font-light leading-relaxed mb-7 max-w-2xl">

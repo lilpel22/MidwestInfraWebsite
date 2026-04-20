@@ -55,14 +55,20 @@ export const servicesData = [
       'Tanks & Clarifiers', 'Digesters', 'Tunnels', 'Secondary Containment',
     ],
     example: {
-      title: 'Municipal Manhole Rehabilitation — Oakland County, MI',
-      description: 'A series of aging sanitary manholes were exhibiting H₂S-driven concrete deterioration with active groundwater infiltration through cracked barrel sections and failing bench channels. Traditional open-cut replacement was cost-prohibitive and would have required extended road closures on high-traffic corridors. SprayWall® was applied at 250 mils DFT in a single mobilization — fully encapsulating cracks, bench deterioration, and invert defects. Zero excavation. No road disruption.',
+      title: 'Manhole Rehabilitation - SprayWall',
+      description: 'Aging sanitary manholes were exhibiting significant inflow and infiltration (I&I) along with advanced concrete deterioration, and prior liner systems had failed — compromising structural stability. Rather than traditional dig-and-replace, a trenchless rehabilitation approach was selected. Failed liner materials were removed and active infiltration points were repaired, then SprayWall® polyurethane structural lining was spray-applied at 250 mils to form a monolithic, corrosion-resistant interior that bonds directly to the existing substrate.',
       highlights: [
-        'Approx. 40% cost savings compared to traditional open-cut replacement',
-        'Zero road closures — full traffic access maintained throughout',
-        'Structures returned to service same day following each application window',
+        '~40% cost savings compared to traditional dig-and-replace',
+        'Faster project completion and service restoration',
+        'Monolithic, corrosion-resistant lining — extended asset life',
+        'Minimal disruption to surrounding roadways and community',
       ],
-      images: ['/images/20241203-DSCF5801.jpg', '/images/20241203-IMG_3244.jpg'],
+      images: [
+        '/images/sprayroq-example-1.jpg',
+        '/images/sprayroq-example-2.jpg',
+        '/images/sprayroq-example-3.jpg',
+        '/images/sprayroq-example-4.jpg',
+      ],
     },
   },
   {
@@ -128,7 +134,11 @@ export const servicesData = [
         'Nozzle configurations matched to blockage type — root intrusion, grease, consolidated sediment',
         'Post-jetting pipe surface meets NASSCO prep standards for structural lining application',
       ],
-      images: ['/images/vactruck1.jpg', '/images/20241203-DJI_20241203094827_0009_D.jpg'],
+      images: [
+        '/images/vactruck1.jpg',
+        '/images/20241203-DJI_20241203094827_0009_D.jpg',
+        '/images/sewer-jetting-example-3.jpg',
+      ],
     },
   },
   {
@@ -194,7 +204,12 @@ export const servicesData = [
         'Utility depth, offset, and material type field-documented for project engineer records',
         'Operated in active urban corridor where mechanical excavation was not permissible',
       ],
-      images: ['/images/20250812-AR1_2427.jpg', '/images/20250812-AR1_2529.jpg'],
+      images: [
+        '/images/20250812-AR1_2427.jpg',
+        '/images/20250812-AR1_2529.jpg',
+        '/images/hydrovac-example-3.jpg',
+        '/images/hydrovac-example-4.jpg',
+      ],
     },
   },
 ]

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import heroImage from '../../images/vactruck 1.jpg'
 
 export default function Hero() {
@@ -12,9 +13,9 @@ export default function Hero() {
           className="w-full h-full object-cover object-center"
         />
         {/* Grey gradient — dark on the left under the title, fades to transparent right */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/75 to-black/30 sm:via-black/65 sm:to-black/15" />
         {/* Bottom fade for grounding */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
       </div>
 
       {/* Content */}
@@ -27,9 +28,9 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex items-center gap-3 mb-7"
           >
-            <div className="w-10 h-px bg-secondary" />
+            <div className="w-8 h-px bg-secondary" />
             <span className="font-oswald text-xs tracking-[0.32em] uppercase text-secondary font-medium">
-              Certified Sprayroq™ Michigan Partner
+              Certified Sprayroq™<br className="sm:hidden" /> Michigan Partner
             </span>
           </motion.div>
 
@@ -38,7 +39,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.3 }}
-            className="font-oswald text-5xl sm:text-6xl lg:text-7xl xl:text-[82px] font-bold text-white uppercase leading-[0.93] tracking-tight mb-7"
+            className="font-oswald text-4xl sm:text-6xl lg:text-7xl xl:text-[82px] font-bold text-white uppercase leading-[1.02] sm:leading-[0.93] tracking-tight mb-7"
           >
             Michigan's<br />
             <span className="text-secondary">Trenchless</span><br />
@@ -51,7 +52,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.48 }}
-            className="font-roboto text-base lg:text-lg text-white/70 font-light leading-relaxed mb-10 max-w-[540px]"
+            className="font-roboto text-base lg:text-lg text-white/90 font-light leading-relaxed mb-10 max-w-[540px]"
           >
             Spray-applied structural lining for CMP culverts, manholes, lift stations,
             and wet wells — non-destructive rehabilitation for municipalities, MDOT,
@@ -71,32 +72,16 @@ export default function Hero() {
             >
               Our Services
             </a>
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               className="px-8 py-4 border border-white/40 text-white font-oswald text-sm font-semibold tracking-[0.22em] uppercase hover:border-white hover:bg-white/10 transition-colors duration-200"
             >
               Get a Quote
-            </a>
+            </Link>
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.3 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <span className="font-oswald text-[10px] tracking-[0.35em] uppercase text-white/35">
-          Scroll
-        </span>
-        <motion.div
-          animate={{ y: [0, 9, 0] }}
-          transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
-          className="w-px h-9 bg-gradient-to-b from-secondary/80 to-transparent"
-        />
-      </motion.div>
     </section>
   )
 }

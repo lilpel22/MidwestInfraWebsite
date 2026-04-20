@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 // ─── Formspree config ────────────────────────────────────────────────────────
 // 1. Sign up at formspree.io and create a form pointed at info@mwcc.biz
@@ -44,7 +45,7 @@ export default function Contact() {
   }
 
   const inputClass =
-    'w-full bg-transparent border-b border-white/40 text-white font-roboto text-base placeholder-white/60 py-3.5 focus:outline-none focus:border-secondary transition-colors duration-200'
+    'w-full bg-transparent border-b border-white/40 text-white font-roboto text-base placeholder-white/60 py-3.5 focus:outline-none focus-visible:outline-2 focus-visible:outline focus-visible:outline-secondary focus-visible:outline-offset-4 focus:border-secondary transition-colors duration-200'
   const labelClass =
     'font-oswald text-sm tracking-[0.22em] uppercase text-white font-semibold'
 
@@ -113,14 +114,23 @@ export default function Contact() {
                 </motion.div>
               ))}
             </div>
+
+            {/* Mobile-only CTA — replaces the form on small screens */}
+            <Link
+              to="/contact"
+              className="lg:hidden mt-10 inline-flex w-full items-center justify-center px-8 py-4 bg-secondary text-white font-oswald text-sm font-semibold tracking-[0.22em] uppercase hover:bg-secondary-dark transition-colors duration-200"
+            >
+              Contact Us
+            </Link>
           </div>
 
-          {/* Right: Form */}
+          {/* Right: Form (desktop only) */}
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
+            className="hidden lg:block"
           >
             {status === 'success' ? (
               <div className="flex flex-col items-start justify-center h-full py-12">
@@ -144,31 +154,31 @@ export default function Contact() {
               <form onSubmit={handleSubmit} className="space-y-7">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
                   <div className="flex flex-col gap-2">
-                    <label className={labelClass}>Full Name</label>
-                    <input type="text" name="name" placeholder="Jane Smith" value={form.name} onChange={handleChange} required className={inputClass} />
+                    <label htmlFor="contact-name" className={labelClass}>Full Name</label>
+                    <input id="contact-name" type="text" name="name" placeholder="Jane Smith" value={form.name} onChange={handleChange} required className={inputClass} />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label className={labelClass}>Company / Organization</label>
-                    <input type="text" name="company" placeholder="City of Lapeer" value={form.company} onChange={handleChange} className={inputClass} />
+                    <label htmlFor="contact-company" className={labelClass}>Company / Organization</label>
+                    <input id="contact-company" type="text" name="company" placeholder="City of Lapeer" value={form.company} onChange={handleChange} className={inputClass} />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
                   <div className="flex flex-col gap-2">
-                    <label className={labelClass}>Email Address</label>
-                    <input type="email" name="email" placeholder="you@organization.gov" value={form.email} onChange={handleChange} required className={inputClass} />
+                    <label htmlFor="contact-email" className={labelClass}>Email Address</label>
+                    <input id="contact-email" type="email" name="email" placeholder="you@organization.gov" value={form.email} onChange={handleChange} required className={inputClass} />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label className={labelClass}>Phone Number</label>
-                    <input type="tel" name="phone" placeholder="(810) 555-0100" value={form.phone} onChange={handleChange} className={inputClass} />
+                    <label htmlFor="contact-phone" className={labelClass}>Phone Number</label>
+                    <input id="contact-phone" type="tel" name="phone" placeholder="(810) 555-0100" value={form.phone} onChange={handleChange} className={inputClass} />
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label className={labelClass}>Service of Interest</label>
+                  <label htmlFor="contact-service" className={labelClass}>Service of Interest</label>
                   <div className="relative">
-                    <select name="service" value={form.service} onChange={handleChange}
-                      className="w-full bg-transparent border-b border-white/40 text-white/80 font-roboto text-base py-3.5 focus:outline-none focus:border-secondary transition-colors duration-200 appearance-none cursor-pointer"
+                    <select id="contact-service" name="service" value={form.service} onChange={handleChange}
+                      className="w-full bg-transparent border-b border-white/40 text-white/80 font-roboto text-base py-3.5 focus:outline-none focus-visible:outline-2 focus-visible:outline focus-visible:outline-secondary focus-visible:outline-offset-4 focus:border-secondary transition-colors duration-200 appearance-none cursor-pointer"
                     >
                       <option value="" disabled className="bg-primary-deep">Select a service...</option>
                       <option value="sprayroq" className="bg-primary-deep">Sprayroq Structural Coatings</option>
@@ -186,10 +196,10 @@ export default function Contact() {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label className={labelClass}>Project Details</label>
-                  <textarea name="message" placeholder="Describe your project — asset type (manhole, culvert, wet well), location, estimated scope, and any known conditions..."
+                  <label htmlFor="contact-message" className={labelClass}>Project Details</label>
+                  <textarea id="contact-message" name="message" placeholder="Describe your project — asset type (manhole, culvert, wet well), location, estimated scope, and any known conditions..."
                     rows={5} value={form.message} onChange={handleChange}
-                    className="w-full bg-transparent border-b border-white/40 text-white font-roboto text-base placeholder-white/60 py-3.5 focus:outline-none focus:border-secondary transition-colors duration-200 resize-none"
+                    className="w-full bg-transparent border-b border-white/40 text-white font-roboto text-base placeholder-white/60 py-3.5 focus:outline-none focus-visible:outline-2 focus-visible:outline focus-visible:outline-secondary focus-visible:outline-offset-4 focus:border-secondary transition-colors duration-200 resize-none"
                   />
                 </div>
 

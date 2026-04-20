@@ -118,6 +118,7 @@ export default function Services() {
             >
             <Link
               to={`/services/${service.slug}`}
+              aria-label={`Learn more about ${service.title}`}
               className="group bg-white border border-gray-200 hover:border-primary/25 hover:shadow-2xl transition-all duration-500 flex flex-col overflow-hidden h-full"
             >
               {/* Photo */}
@@ -127,25 +128,8 @@ export default function Services() {
                   alt={service.imageAlt}
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
-                {/* Dark gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-primary-deep/70 via-primary-deep/20 to-transparent" />
-
-                {/* Number badge */}
-                <div className="absolute top-4 left-4">
-                  <span className="font-oswald text-xs tracking-[0.28em] uppercase text-white/60 bg-black/35 backdrop-blur-sm px-2.5 py-1">
-                    {service.id}
-                  </span>
-                </div>
-
-                {/* Icon + subtitle bottom-left */}
-                <div className="absolute bottom-4 left-4 flex items-center gap-2.5">
-                  <div className="text-secondary">
-                    {service.icon}
-                  </div>
-                  <span className="font-oswald text-[10px] tracking-[0.28em] uppercase text-white/80 font-medium">
-                    {service.subtitle}
-                  </span>
-                </div>
+                {/* Subtle bottom fade — keeps image clean while grounding the card */}
+                <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-primary-deep/25 to-transparent" />
               </div>
 
               <div className="p-8 lg:p-9 flex-1 flex flex-col">

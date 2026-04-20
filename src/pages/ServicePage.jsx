@@ -1,8 +1,9 @@
 import { useParams, Link, useNavigate, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import Lightbox from '../components/Lightbox'
 import { getServiceBySlug, servicesData } from '../data/servicesData'
 
 export default function ServicePage() {
@@ -30,6 +31,26 @@ export default function ServicePage() {
       window.scrollTo({ top: 0, behavior: 'instant' })
     }
   }, [slug, hash])
+
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [lightboxIndex, setLightboxIndex] = useState(0)
+
+  const exampleImages = service?.example?.images || []
+
+  const openLightbox = useCallback((i) => {
+    setLightboxIndex(i)
+    setLightboxOpen(true)
+  }, [])
+
+  const closeLightbox = useCallback(() => setLightboxOpen(false), [])
+
+  const nextImage = useCallback(() => {
+    setLightboxIndex((i) => (i + 1) % exampleImages.length)
+  }, [exampleImages.length])
+
+  const prevImage = useCallback(() => {
+    setLightboxIndex((i) => (i - 1 + exampleImages.length) % exampleImages.length)
+  }, [exampleImages.length])
 
   if (!service) return null
 
@@ -124,15 +145,12 @@ export default function ServicePage() {
                 <p className="font-roboto text-sm text-white/80 mb-5 leading-relaxed">
                   Contact our team for a site assessment and project scope.
                 </p>
-                <a
-                  href="/#contact"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-primary font-oswald text-xs tracking-[0.18em] uppercase font-semibold hover:bg-secondary hover:text-white transition-all duration-200"
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center px-6 py-3 border border-white/40 text-white font-oswald text-xs tracking-[0.22em] uppercase font-semibold hover:border-white hover:bg-white/10 transition-colors duration-200"
                 >
                   Get a Quote
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
+                </Link>
               </div>
             </motion.div>
           </div>
@@ -163,48 +181,6 @@ export default function ServicePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                   <span className="font-roboto text-sm text-gray-700 leading-snug">{cap}</span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process */}
-      <section className="bg-white py-16 lg:py-24 border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-8 h-px bg-secondary" />
-            <span className="font-oswald text-[11px] tracking-[0.35em] uppercase text-primary font-medium">
-              Our Process
-            </span>
-          </div>
-          <h2 className="font-oswald text-3xl lg:text-4xl font-bold text-primary-deep uppercase leading-tight mb-14">
-            How We Execute
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-            {service.process.map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="flex gap-6"
-              >
-                <div className="flex-none">
-                  <div className="font-oswald text-5xl font-bold text-gray-100 leading-none select-none">
-                    {step.step}
-                  </div>
-                </div>
-                <div className="pt-1.5">
-                  <h3 className="font-oswald text-lg font-bold text-primary-deep uppercase tracking-wide mb-3">
-                    {step.title}
-                  </h3>
-                  <p className="font-roboto text-base text-gray-600 leading-relaxed">
-                    {step.description}
-                  </p>
                 </div>
               </motion.div>
             ))}
@@ -255,28 +231,92 @@ export default function ServicePage() {
                 </ul>
               </motion.div>
 
-              {/* Right: images */}
+              {/* Right: images — 1 hero + evenly spaced thumbnails, all clickable */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.55, delay: 0.1, ease: 'easeOut' }}
-                className="grid grid-cols-2 gap-3"
+                className="grid gap-3"
+                style={{
+                  gridTemplateColumns: `repeat(${Math.max(1, service.example.images.length - 1)}, minmax(0, 1fr))`,
+                }}
               >
                 {service.example.images.map((img, i) => (
-                  <div key={i} className={`overflow-hidden ${i === 0 ? 'col-span-2' : ''}`}>
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => openLightbox(i)}
+                    className={`group relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-secondary ${
+                      i === 0 ? 'col-span-full' : ''
+                    }`}
+                    aria-label={`Open image ${i + 1} of ${service.example.images.length}`}
+                  >
                     <img
                       src={img}
                       alt={`${service.example.title} example ${i + 1}`}
-                      className={`w-full object-cover ${i === 0 ? 'h-64 lg:h-72' : 'h-40 lg:h-48'}`}
+                      className={`w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04] ${
+                        i === 0 ? 'h-64 lg:h-80' : 'h-28 lg:h-36'
+                      }`}
                     />
-                  </div>
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+                    {/* Expand icon — top-right on hover */}
+                    <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
+                      <div className="w-8 h-8 bg-secondary flex items-center justify-center">
+                        <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4" />
+                        </svg>
+                      </div>
+                    </div>
+                  </button>
                 ))}
               </motion.div>
             </div>
           </div>
         </section>
       )}
+
+      {/* Process */}
+      <section className="bg-white py-16 lg:py-24 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-8 h-px bg-secondary" />
+            <span className="font-oswald text-[11px] tracking-[0.35em] uppercase text-primary font-medium">
+              Our Process
+            </span>
+          </div>
+          <h2 className="font-oswald text-3xl lg:text-4xl font-bold text-primary-deep uppercase leading-tight mb-14">
+            How We Execute
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+            {service.process.map((step, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="flex gap-6"
+              >
+                <div className="flex-none">
+                  <div className="font-oswald text-5xl font-bold text-gray-100 leading-none select-none">
+                    {step.step}
+                  </div>
+                </div>
+                <div className="pt-1.5">
+                  <h3 className="font-oswald text-lg font-bold text-primary-deep uppercase tracking-wide mb-3">
+                    {step.title}
+                  </h3>
+                  <p className="font-roboto text-base text-gray-600 leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* CTA Banner */}
       <section className="bg-primary-deep py-16 lg:py-20">
@@ -296,14 +336,15 @@ export default function ServicePage() {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 flex-none">
-            <a
-              href="/#contact"
+            <Link
+              to="/contact"
               className="px-8 py-3.5 bg-secondary text-white font-oswald text-sm tracking-[0.18em] uppercase font-semibold hover:bg-secondary-dark transition-colors duration-200 text-center"
             >
               Get a Quote
-            </a>
+            </Link>
             <Link
               to="/"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="px-8 py-3.5 border-2 border-white/30 text-white font-oswald text-sm tracking-[0.18em] uppercase font-semibold hover:border-white/70 transition-colors duration-200 text-center"
             >
               Back to Home
@@ -351,6 +392,17 @@ export default function ServicePage() {
       </section>
 
       <Footer />
+
+      <Lightbox
+        open={lightboxOpen}
+        images={exampleImages}
+        index={lightboxIndex}
+        title={service.example?.title}
+        tag="Example Work"
+        onClose={closeLightbox}
+        onPrev={prevImage}
+        onNext={nextImage}
+      />
     </div>
   )
 }

@@ -8,9 +8,9 @@ const stats = [
 
 export default function Stats() {
   return (
-    <section className="bg-primary py-14 lg:py-16">
+    <section className="bg-primary py-20 lg:py-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 lg:gap-0 lg:divide-x lg:divide-white/20">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 lg:gap-0 lg:divide-x lg:divide-secondary/30">
           {stats.map((stat, i) => (
             <motion.div
               key={i}
@@ -20,10 +20,10 @@ export default function Stats() {
               transition={{ duration: 0.5, delay: i * 0.09 }}
               className="text-center lg:px-8"
             >
-              <div className="font-oswald text-4xl lg:text-5xl font-bold text-secondary mb-2 leading-none">
+              <div className="font-oswald text-4xl lg:text-5xl font-bold text-white mb-2 leading-none">
                 {stat.value}
               </div>
-              <div className="font-roboto text-xs text-white/55 uppercase tracking-[0.2em]">
+              <div className="font-roboto text-sm sm:text-xs text-white/55 uppercase tracking-[0.2em]">
                 {stat.label}
               </div>
             </motion.div>
