@@ -1,11 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 
-// ─── Formspree config ────────────────────────────────────────────────────────
-// Same form ID as Contact.jsx — both submit to the same Formspree endpoint
-const FORMSPREE_ID = 'YOUR_FORM_ID'
-// ─────────────────────────────────────────────────────────────────────────────
-
 const contactDetails = [
   { label: 'Phone', value: '(810) 721-1933', href: 'tel:8107211933' },
   { label: 'Email', value: 'Miradmin@mwcc.biz', href: 'mailto:Miradmin@mwcc.biz' },
@@ -26,14 +21,19 @@ export default function ContactPageForm() {
   const handleChange = (e) =>
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
 
+  const encode = (data) =>
+    Object.entries(data)
+      .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
+      .join('&')
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus('submitting')
     try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      const res = await fetch('/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(form),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode({ 'form-name': 'contact', 'bot-field': '', ...form }),
       })
       if (res.ok) {
         setStatus('success')
@@ -104,7 +104,9 @@ export default function ContactPageForm() {
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <form name="contact" data-netlify="true" netlify-honeypot="bot-field" onSubmit={handleSubmit} className="space-y-8">
+              <input type="hidden" name="form-name" value="contact" />
+              <input type="hidden" name="bot-field" />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 <div className="flex flex-col gap-2">
                   <label htmlFor="cp-first-name" className={labelClass}>First Name</label>
