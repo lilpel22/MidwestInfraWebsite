@@ -3,7 +3,7 @@ import logo from '../../logos/Midwest Infra logo1.png'
 
 const serviceLinks = [
   { label: 'Sprayroq Structural Coatings', to: '/services/sprayroq-coatings' },
-  { label: 'High-Pressure Sewer Jetting', to: '/services/sewer-jetting' },
+  { label: 'High-Pressure Hot Water Sewer Jetting', to: '/services/sewer-jetting' },
   { label: 'Hydrovac Services', to: '/services/hydrovac' },
 ]
 
@@ -59,8 +59,8 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="mailto:info@mwcc.biz" className="font-roboto text-sm text-white/65 hover:text-white transition-colors">
-                  info@mwcc.biz
+                <a href="mailto:Miradmin@mwcc.biz" className="font-roboto text-sm text-white/65 hover:text-white transition-colors">
+                  Miradmin@mwcc.biz
                 </a>
               </li>
               <li>
@@ -73,8 +73,7 @@ export default function Footer() {
                   115 E Capac Rd, Imlay City, MI
                 </a>
               </li>
-              <li className="font-roboto text-sm text-white/65">Mon–Thu: 8am–4:30pm</li>
-              <li className="font-roboto text-sm text-white/65">Fri: By Appointment</li>
+              <li className="font-roboto text-sm text-white/65">Mon–Fri: 8am–4:30pm</li>
             </ul>
           </div>
 

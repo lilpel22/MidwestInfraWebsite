@@ -4,7 +4,6 @@ import Header from './components/Header'
 import Hero from './components/Hero'
 import Stats from './components/Stats'
 import Services from './components/Services'
-import Projects from './components/Projects'
 import SprayROQBanner from './components/SprayROQBanner'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -21,7 +20,6 @@ function HomePage() {
       <Hero />
       <Stats />
       <Services />
-      <Projects />
       <SprayROQBanner />
       <Contact />
       <Footer />

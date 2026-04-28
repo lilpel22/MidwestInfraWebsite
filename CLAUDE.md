@@ -79,11 +79,11 @@ and private industrial clients.
 
 - Phone: (810) 721-1933
 
-- Email: info@mwcc.biz
+- Email: Miradmin@mwcc.biz
 
 - Address: 115 E Capac Rd, Imlay City, MI 48444
 
-- Hours: Mon–Thu 8am–4:30pm; Fri by appointment
+- Hours: Mon–Fri 8am–4:30pm
 
 
 

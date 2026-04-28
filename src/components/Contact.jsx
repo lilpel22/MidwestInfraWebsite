@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom'
 
 const contactDetails = [
   { label: 'Phone', value: '(810) 721-1933', href: 'tel:8107211933' },
-  { label: 'Email', value: 'info@mwcc.biz', href: 'mailto:info@mwcc.biz' },
+  { label: 'Email', value: 'Miradmin@mwcc.biz', href: 'mailto:Miradmin@mwcc.biz' },
   { label: 'Address', value: '115 E Capac Rd, Imlay City, MI 48444', href: 'https://maps.google.com/?q=115+E+Capac+Rd+Imlay+City+MI+48444' },
-  { label: 'Hours', value: 'Mon–Thu 8am–4:30pm · Fri by appointment' },
+  { label: 'Hours', value: 'Mon–Fri 8am–4:30pm' },
 ]
 
-const EMPTY = { name: '', company: '', email: '', phone: '', service: '', message: '' }
+const EMPTY = { firstName: '', lastName: '', company: '', email: '', phone: '', service: '', message: '' }
 
 export default function Contact() {
   const [form, setForm] = useState(EMPTY)
@@ -44,7 +44,7 @@ export default function Contact() {
   }
 
   const inputClass =
-    'w-full bg-transparent border-b border-white/40 text-white font-roboto text-base placeholder-white/60 py-3.5 focus:outline-none focus-visible:outline-2 focus-visible:outline focus-visible:outline-secondary focus-visible:outline-offset-4 focus:border-secondary transition-colors duration-200'
+    'w-full bg-transparent border-b border-white/40 text-white font-roboto text-base placeholder-white/60 py-3.5 focus:outline-none focus:border-secondary transition-colors duration-200'
   const labelClass =
     'font-oswald text-sm tracking-[0.22em] uppercase text-white font-semibold'
 
@@ -155,35 +155,40 @@ export default function Contact() {
                 <input type="hidden" name="bot-field" />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="contact-name" className={labelClass}>Full Name</label>
-                    <input id="contact-name" type="text" name="name" placeholder="Jane Smith" value={form.name} onChange={handleChange} required className={inputClass} />
+                    <label htmlFor="contact-first-name" className={labelClass}>First Name</label>
+                    <input id="contact-first-name" type="text" name="firstName" value={form.firstName} onChange={handleChange} required className={inputClass} />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="contact-company" className={labelClass}>Company / Organization</label>
-                    <input id="contact-company" type="text" name="company" placeholder="City of Lapeer" value={form.company} onChange={handleChange} className={inputClass} />
+                    <label htmlFor="contact-last-name" className={labelClass}>Last Name</label>
+                    <input id="contact-last-name" type="text" name="lastName" value={form.lastName} onChange={handleChange} required className={inputClass} />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
                   <div className="flex flex-col gap-2">
                     <label htmlFor="contact-email" className={labelClass}>Email Address</label>
-                    <input id="contact-email" type="email" name="email" placeholder="you@organization.gov" value={form.email} onChange={handleChange} required className={inputClass} />
+                    <input id="contact-email" type="email" name="email" value={form.email} onChange={handleChange} required className={inputClass} />
                   </div>
                   <div className="flex flex-col gap-2">
                     <label htmlFor="contact-phone" className={labelClass}>Phone Number</label>
-                    <input id="contact-phone" type="tel" name="phone" placeholder="(810) 555-0100" value={form.phone} onChange={handleChange} className={inputClass} />
+                    <input id="contact-phone" type="tel" name="phone" value={form.phone} onChange={handleChange} className={inputClass} />
                   </div>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="contact-company" className={labelClass}>Company / Organization</label>
+                  <input id="contact-company" type="text" name="company" value={form.company} onChange={handleChange} className={inputClass} />
                 </div>
 
                 <div className="flex flex-col gap-2">
                   <label htmlFor="contact-service" className={labelClass}>Service of Interest</label>
                   <div className="relative">
                     <select id="contact-service" name="service" value={form.service} onChange={handleChange}
-                      className="w-full bg-transparent border-b border-white/40 text-white/80 font-roboto text-base py-3.5 focus:outline-none focus-visible:outline-2 focus-visible:outline focus-visible:outline-secondary focus-visible:outline-offset-4 focus:border-secondary transition-colors duration-200 appearance-none cursor-pointer"
+                      className="w-full bg-transparent border-b border-white/40 text-white/80 font-roboto text-base py-3.5 focus:outline-none focus:border-secondary transition-colors duration-200 appearance-none cursor-pointer"
                     >
                       <option value="" disabled className="bg-primary-deep">Select a service...</option>
                       <option value="sprayroq" className="bg-primary-deep">Sprayroq Structural Coatings</option>
-                      <option value="jetting" className="bg-primary-deep">High-Pressure Sewer Jetting</option>
+                      <option value="jetting" className="bg-primary-deep">High-Pressure Hot Water Sewer Jetting</option>
                       <option value="hydrovac" className="bg-primary-deep">Hydrovac Services</option>
                       <option value="multiple" className="bg-primary-deep">Multiple Services</option>
                       <option value="assessment" className="bg-primary-deep">Site Assessment / Consultation</option>
@@ -200,13 +205,13 @@ export default function Contact() {
                   <label htmlFor="contact-message" className={labelClass}>Project Details</label>
                   <textarea id="contact-message" name="message" placeholder="Describe your project — asset type (manhole, culvert, wet well), location, estimated scope, and any known conditions..."
                     rows={5} value={form.message} onChange={handleChange}
-                    className="w-full bg-transparent border-b border-white/40 text-white font-roboto text-base placeholder-white/60 py-3.5 focus:outline-none focus-visible:outline-2 focus-visible:outline focus-visible:outline-secondary focus-visible:outline-offset-4 focus:border-secondary transition-colors duration-200 resize-none"
+                    className="w-full bg-transparent border-b border-white/40 text-white font-roboto text-base placeholder-white/60 py-3.5 focus:outline-none focus:border-secondary transition-colors duration-200 resize-none"
                   />
                 </div>
 
                 {status === 'error' && (
                   <p className="font-roboto text-sm text-red-400">
-                    Something went wrong. Please try again or email us directly at info@mwcc.biz.
+                    Something went wrong. Please try again or email us directly at Miradmin@mwcc.biz.
                   </p>
                 )}
 

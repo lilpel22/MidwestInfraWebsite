@@ -28,7 +28,7 @@ const services = [
   {
     id: '02',
     slug: 'sewer-jetting',
-    title: 'High-Pressure Sewer Jetting',
+    title: 'High-Pressure Hot Water Sewer Jetting',
     subtitle: 'Line Clearing & Preparation',
     image: '/images/vactruck1.jpg',
     imageAlt: 'Midwest Infra high-pressure sewer jetting truck on-site',

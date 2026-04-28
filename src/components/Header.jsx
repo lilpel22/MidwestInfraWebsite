@@ -10,7 +10,7 @@ const serviceItems = [
     to: '/services/sprayroq-coatings',
   },
   {
-    label: 'High-Pressure Sewer Jetting',
+    label: 'High-Pressure Hot Water Sewer Jetting',
     description: 'Hot water jetting & cleaning',
     to: '/services/sewer-jetting',
   },

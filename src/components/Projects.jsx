@@ -14,7 +14,7 @@ const examples = [
   },
   {
     id: '02',
-    title: 'High-Pressure Sewer Jetting',
+    title: 'High-Pressure Hot Water Sewer Jetting',
     tag: 'Sewer Jetting',
     slug: 'sewer-jetting',
     image: '/images/20241203-DJI_20241203094827_0009_D.jpg',
