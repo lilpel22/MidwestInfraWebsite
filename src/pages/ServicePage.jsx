@@ -5,12 +5,19 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Lightbox from '../components/Lightbox'
 import { getServiceBySlug, servicesData } from '../data/servicesData'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ServicePage() {
   const { slug } = useParams()
   const { hash } = useLocation()
   const navigate = useNavigate()
   const service = getServiceBySlug(slug)
+
+  useDocumentMeta({
+    title: service ? `${service.title} | Midwest Infra` : 'Services | Midwest Infra',
+    description: service ? `${service.tagline} ${service.subtitle ? '— ' + service.subtitle + '.' : ''} Midwest Infra serves municipalities, MDOT, and county road commissions across Michigan.` : 'Trenchless rehabilitation services from Midwest Infra across Michigan.',
+    path: `/services/${slug || ''}`,
+  })
 
   useEffect(() => {
     if (!service) navigate('/', { replace: true })

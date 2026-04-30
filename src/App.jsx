@@ -12,8 +12,14 @@ import OurWork from './pages/OurWork'
 import ServicePage from './pages/ServicePage'
 import About from './pages/About'
 import ContactPage from './pages/ContactPage'
+import { useDocumentMeta } from './hooks/useDocumentMeta'
 
 function HomePage() {
+  useDocumentMeta({
+    title: "Midwest Infra — Michigan's Trenchless Rehabilitation Specialists",
+    description: 'Certified SprayROQ™ partner providing trenchless structural rehabilitation — manholes, CMP culverts, lift stations, and wet wells — for municipalities, MDOT, and county road commissions across Michigan.',
+    path: '/',
+  })
   return (
     <div className="font-roboto overflow-x-hidden">
       <Header />

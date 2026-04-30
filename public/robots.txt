@@ -1,0 +1,5 @@
+# https://www.midwestinfra.biz/robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://www.midwestinfra.biz/sitemap.xml

@@ -3,8 +3,17 @@ import { Link } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { caseStudies } from '../data/caseStudies'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function OurWork() {
+  // Page is not in public nav yet — exclude from search indexing
+  useDocumentMeta({
+    title: 'Our Work | Midwest Infra',
+    description: 'Project spotlights from Midwest Infra.',
+    path: '/our-work',
+    noindex: true,
+  })
+
   return (
     <div className="font-roboto overflow-x-hidden bg-[#050D1A]">
       <Header />

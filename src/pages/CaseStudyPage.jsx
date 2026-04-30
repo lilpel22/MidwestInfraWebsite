@@ -4,11 +4,20 @@ import { motion } from 'framer-motion'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { caseStudies } from '../data/caseStudies'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function CaseStudyPage() {
   const { id } = useParams()
   const navigate = useNavigate()
   const study = caseStudies.find(c => c.id === id)
+
+  // Page is not in public nav yet — exclude from search indexing
+  useDocumentMeta({
+    title: study ? `${study.title} | Midwest Infra` : 'Case Study | Midwest Infra',
+    description: study ? `${study.subtitle || ''}`.trim().slice(0, 280) : 'Project case study from Midwest Infra.',
+    path: `/case-study/${id || ''}`,
+    noindex: true,
+  })
 
   useEffect(() => {
     if (!study) navigate('/', { replace: true })

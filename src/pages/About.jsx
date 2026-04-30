@@ -3,8 +3,15 @@ import { motion } from 'framer-motion'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import WhoWeAre from '../components/WhoWeAre'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function About() {
+  useDocumentMeta({
+    title: 'About Midwest Infra | Michigan Trenchless Rehabilitation',
+    description: 'A division of Midwest Commercial Construction, Midwest Infra is a certified SprayROQ™ partner specializing in trenchless structural rehabilitation across Michigan.',
+    path: '/about',
+  })
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' })
   }, [])
