@@ -4,3 +4,13 @@
 
 [build.environment]
   NODE_VERSION = "24"
+
+# SPA fallback — React Router handles all routes client-side, so any URL
+# that doesn't match a real file in /dist (e.g. /sitemap.xml, /robots.txt,
+# /assets/*, /favicon.ico) should serve index.html and let the router
+# take over. Without this, deep links return 404 to direct visitors and
+# search engine crawlers.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
