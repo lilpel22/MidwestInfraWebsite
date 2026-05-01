@@ -22,12 +22,6 @@ export default function About() {
 
       {/* Hero */}
       <section className="relative bg-primary-deep flex items-center pt-20 lg:pt-24" style={{ minHeight: '38vh' }}>
-        <img
-          src="/images/vactruck2.jpg"
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-deep/90 via-primary-deep/70 to-primary-deep/50" />
         <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-20 w-full">
           <motion.div
             initial={{ opacity: 0, x: -18 }}

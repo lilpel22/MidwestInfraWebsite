@@ -38,7 +38,7 @@ export default function Footer() {
               </a>
             </p>
             <a
-              href="https://www.linkedin.com/midwest-infra"
+              href="https://www.linkedin.com/company/midwest-infra/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Midwest Infra on LinkedIn"
