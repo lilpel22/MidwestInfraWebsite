@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { MotionConfig } from 'framer-motion'
 import Header from './components/Header'
 import Hero from './components/Hero'
@@ -7,8 +7,6 @@ import Services from './components/Services'
 import SprayROQBanner from './components/SprayROQBanner'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
-import CaseStudyPage from './pages/CaseStudyPage'
-import OurWork from './pages/OurWork'
 import ServicePage from './pages/ServicePage'
 import About from './pages/About'
 import ContactPage from './pages/ContactPage'
@@ -39,11 +37,10 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/case-study/:id" element={<CaseStudyPage />} />
-          <Route path="/our-work" element={<OurWork />} />
           <Route path="/services/:slug" element={<ServicePage />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
     </MotionConfig>

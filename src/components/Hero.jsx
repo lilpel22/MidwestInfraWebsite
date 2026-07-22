@@ -9,7 +9,7 @@ export default function Hero() {
       <div className="absolute inset-0">
         <img
           src={heroImage}
-          alt="Midwest Infra operations"
+          alt="Midwest Infra vacuum truck at a Michigan trenchless infrastructure rehabilitation project"
           className="w-full h-full object-cover object-center"
         />
         {/* Grey gradient — dark on the left under the title, fades to transparent right */}
