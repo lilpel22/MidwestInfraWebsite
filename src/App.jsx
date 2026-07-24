@@ -7,9 +7,12 @@ import Services from './components/Services'
 import SprayROQBanner from './components/SprayROQBanner'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import LatestArticles from './components/LatestArticles'
 import ServicePage from './pages/ServicePage'
 import About from './pages/About'
 import ContactPage from './pages/ContactPage'
+import ArticlesIndex from './pages/ArticlesIndex'
+import ArticlePost from './pages/ArticlePost'
 import { useDocumentMeta } from './hooks/useDocumentMeta'
 
 function HomePage() {
@@ -24,6 +27,7 @@ function HomePage() {
       <Hero />
       <Stats />
       <Services />
+      <LatestArticles />
       <SprayROQBanner />
       <Contact />
       <Footer />
@@ -40,6 +44,8 @@ export default function App() {
           <Route path="/services/:slug" element={<ServicePage />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/articles" element={<ArticlesIndex />} />
+          <Route path="/articles/:slug" element={<ArticlePost />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>

@@ -160,6 +160,9 @@ export default function Header({ forceScrolled = false }) {
             </AnimatePresence>
           </div>
 
+          <Link to="/articles" className={`font-oswald text-sm font-medium tracking-[0.18em] uppercase transition-colors duration-200 ${navText}`}>
+            Articles
+          </Link>
           <Link to="/about" className={`font-oswald text-sm font-medium tracking-[0.18em] uppercase transition-colors duration-200 ${navText}`}>
             About
           </Link>
@@ -228,6 +231,15 @@ export default function Header({ forceScrolled = false }) {
                 ))}
               </div>
 
+              <Link
+                to="/articles"
+                onClick={close}
+                className={`font-oswald text-lg tracking-[0.15em] uppercase hover:text-secondary transition-colors ${
+                  isScrolled ? 'text-gray-900' : 'text-white'
+                }`}
+              >
+                Articles
+              </Link>
               <Link
                 to="/about"
                 onClick={close}
