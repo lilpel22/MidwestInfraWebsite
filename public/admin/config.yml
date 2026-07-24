@@ -2,10 +2,10 @@ backend:
   name: github
   repo: lilpel22/MidwestInfraWebsite
   branch: main
-  # Cloudflare Workers auth relay. Deploy sveltia-cms-auth to your own
-  # Cloudflare account and paste the worker URL here before going live.
-  # Until then, use local_backend (below) for editing on localhost.
-  base_url: https://REPLACE-WITH-CLOUDFLARE-WORKER-URL
+  # Cloudflare Workers auth relay (sveltia-cms-auth deployed under
+  # the midwest-infra.workers.dev subdomain). Handles the GitHub
+  # OAuth handshake so marketers can sign in at /admin/.
+  base_url: https://sveltia-cms-auth.midwest-infra.workers.dev
 
 # Enables the local proxy backend when Sveltia is loaded on localhost.
 # Run `npx @sveltia/cms-proxy-server` in a second terminal, then edits
