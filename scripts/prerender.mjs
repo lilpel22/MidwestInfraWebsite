@@ -9,15 +9,20 @@ import { mkdir, writeFile } from 'node:fs/promises'
 import puppeteer from 'puppeteer'
 import sirv from 'sirv'
 import { servicesData } from '../src/data/servicesData.js'
+import { loadArticles } from './articles.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DIST_DIR = resolve(__dirname, '..', 'dist')
 const PORT = 4173
 
+const articles = await loadArticles()
+
 const routes = [
   '/about',
   '/contact',
   ...servicesData.map((s) => `/services/${s.slug}`),
+  '/articles',
+  ...articles.map((a) => `/articles/${a.slug}`),
   '/', // home last, since it overwrites the source template dist/index.html
 ]
 

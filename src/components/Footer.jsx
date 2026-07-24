@@ -67,6 +67,21 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
+
+            <h4 className="font-oswald text-[10px] tracking-[0.32em] uppercase text-secondary mt-8 mb-5">
+              Insights
+            </h4>
+            <ul className="space-y-3">
+              <li>
+                <Link
+                  to="/articles"
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'instant' })}
+                  className="font-roboto text-sm text-white/65 hover:text-white transition-colors"
+                >
+                  Articles
+                </Link>
+              </li>
+            </ul>
           </div>
 
           {/* Contact */}

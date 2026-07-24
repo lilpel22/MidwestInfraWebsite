@@ -1,0 +1,99 @@
+backend:
+  name: github
+  repo: lilpel22/MidwestInfraWebsite
+  branch: main
+  # Cloudflare Workers auth relay (sveltia-cms-auth deployed under
+  # the midwest-infra.workers.dev subdomain). Handles the GitHub
+  # OAuth handshake so marketers can sign in at /admin/.
+  base_url: https://sveltia-cms-auth.midwest-infra.workers.dev
+
+# Enables the local proxy backend when Sveltia is loaded on localhost.
+# Run `npx @sveltia/cms-proxy-server` in a second terminal, then edits
+# in /admin/ write directly to files in this working tree. No OAuth needed.
+local_backend: true
+
+media_folder: public/images/articles
+public_folder: /images/articles
+
+# Site URL used for preview links. Update once the production domain is final.
+site_url: https://www.midwestinfra.biz
+
+collections:
+  - name: articles
+    label: Articles
+    label_singular: Article
+    folder: content/articles
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    extension: md
+    format: yaml-frontmatter
+    summary: '{{title}} — {{category}} ({{date | date("YYYY-MM-DD")}})'
+    sortable_fields:
+      - date
+      - title
+      - category
+    view_filters:
+      - label: 'Cleaning'
+        field: category
+        pattern: 'Cleaning'
+      - label: 'Trenchless Excavation'
+        field: category
+        pattern: 'Trenchless Excavation'
+      - label: 'Trenchless Rehabilitation'
+        field: category
+        pattern: 'Trenchless Rehabilitation'
+    fields:
+      - name: title
+        label: Headline
+        widget: string
+        hint: The main title. Uppercase display styling is applied automatically on the site.
+
+      - name: slug
+        label: URL slug
+        widget: string
+        hint: 'Lowercase, hyphen-separated. Will appear as /articles/<slug>. Change with care after publishing.'
+        pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers, and hyphens only.']
+
+      - name: date
+        label: Publish date
+        widget: datetime
+        date_format: 'YYYY-MM-DD'
+        time_format: false
+        picker_utc: false
+
+      - name: category
+        label: Category
+        widget: select
+        options:
+          - Cleaning
+          - Trenchless Excavation
+          - Trenchless Rehabilitation
+        hint: Categories power the filter on /articles. Ask Lily to add new options if needed.
+
+      - name: excerpt
+        label: Excerpt
+        widget: text
+        hint: 1–3 sentences. Shows on the article card and above the article body.
+        required: true
+
+      - name: hero
+        label: Hero image
+        widget: image
+        media_library:
+          config:
+            multiple: false
+        hint: Full-width image shown at the top of the article. Landscape works best.
+
+      - name: card_image
+        label: Card image (optional)
+        widget: image
+        required: false
+        media_library:
+          config:
+            multiple: false
+        hint: Overrides the hero image on the article card. Leave blank to reuse the hero.
+
+      - name: body
+        label: Body
+        widget: markdown
+        hint: Use ## for section headings. Add images, links, and lists from the toolbar.
