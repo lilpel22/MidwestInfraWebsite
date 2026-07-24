@@ -27,11 +27,11 @@ Midwest Infra specializes in spray-applied structural rehabilitation for assets 
 - Lift stations 
 - Wet wells 
 
-As a Sprayroq Certified Partner, Midwest Infra applies SprayWall, a self-priming polyurethane lining designed to reinstate structural integrity while providing corrosion resistance and infiltration control. 
+As a Sprayroq Certified Partner, Midwest Infra applies [SprayWall](https://sprayroq.com/product/spraywall/), a self-priming polyurethane lining designed to reinstate structural integrity while providing corrosion resistance and infiltration control. 
 
 This approach allows the existing structure to serve as the foundation for a new structural lining rather than requiring the entire asset to be removed. 
 
-Rehabilitation Versus Replacement 
+## Rehabilitation Versus Replacement 
 
 Traditional replacement typically requires crews to excavate the area surrounding a damaged structure, remove the existing asset, install a new structure, backfill the excavation, and restore the affected surface. 
 
