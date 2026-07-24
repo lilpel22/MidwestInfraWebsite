@@ -3,7 +3,7 @@ title: 'Trenchless Infrastructure Rehabilitation: When Is Rehabilitation Better 
 slug: when-is-rehabilitation-better-than-replacement
 date: 2026-07-24
 category: Trenchless Rehabilitation
-excerpt: 'Communities, transportation agencies, and facility owners across Michigan depend on underground infrastructure that has often been in service for decades. As culverts, manholes, lift stations, wet wells, and other structures deteriorate, owners eventually face an important decision: Should the structure be completely replaced, or can it be rehabilitated?'
+excerpt: 'As culverts, manholes, lift stations, wet wells, and other structures deteriorate, owners eventually face an important decision: Should the structure be completely replaced, or can it be rehabilitated?'
 hero: /images/articles/sprayroq-example-2.jpg
 card_image: ''
 ---
