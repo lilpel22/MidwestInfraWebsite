@@ -31,6 +31,13 @@ function slugFromFilename(filename) {
   return filename.replace(/\.md$/, '').replace(/^\d{4}-\d{2}-\d{2}-/, '')
 }
 
+function isVisible(data, today) {
+  if (String(data.published) === 'false') return false
+  const dateStr = String(data.date || '').slice(0, 10)
+  if (dateStr && dateStr > today) return false
+  return true
+}
+
 export async function loadArticles() {
   let files
   try {
@@ -40,11 +47,13 @@ export async function loadArticles() {
     throw err
   }
 
+  const today = new Date().toISOString().slice(0, 10)
   const md = files.filter((f) => f.endsWith('.md'))
   const articles = []
   for (const filename of md) {
     const raw = await readFile(join(ARTICLES_DIR, filename), 'utf8')
     const data = parseFrontmatter(raw)
+    if (!isVisible(data, today)) continue
     articles.push({
       slug: data.slug || slugFromFilename(filename),
       date: (data.date || '').slice(0, 10),
