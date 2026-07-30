@@ -60,6 +60,13 @@ collections:
         date_format: 'YYYY-MM-DD'
         time_format: false
         picker_utc: false
+        hint: A future date schedules the article — it stays hidden until this date passes.
+
+      - name: published
+        label: Published
+        widget: boolean
+        default: true
+        hint: Uncheck to keep this as a draft. Drafts never show on the live site.
 
       - name: category
         label: Category

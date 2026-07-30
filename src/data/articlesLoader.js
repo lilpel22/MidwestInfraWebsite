@@ -37,6 +37,19 @@ function slugFromPath(path) {
   return path.split('/').pop().replace(/\.md$/, '').replace(/^\d{4}-\d{2}-\d{2}-/, '')
 }
 
+// An article is visible on the site when:
+//   - it isn't an explicit draft (`published: false`), AND
+//   - its publish date is today or earlier.
+// Missing `published` counts as published — protects pre-flag articles.
+function isVisible(data, today) {
+  if (String(data.published) === 'false') return false
+  const dateStr = String(data.date || '').slice(0, 10)
+  if (dateStr && dateStr > today) return false
+  return true
+}
+
+const today = new Date().toISOString().slice(0, 10)
+
 export const articles = Object.entries(rawArticles)
   .map(([path, raw]) => {
     const { data, body } = parseFrontmatter(raw)
@@ -52,8 +65,11 @@ export const articles = Object.entries(rawArticles)
       readTime: estimateReadTime(body),
       html: marked.parse(body),
       body,
+      _data: data,
     }
   })
+  .filter((a) => isVisible(a._data, today))
+  .map(({ _data, ...rest }) => rest)
   .sort((a, b) => (a.date < b.date ? 1 : -1))
 
 export const CATEGORIES = [
