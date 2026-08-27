@@ -1,7 +1,7 @@
 ---
 title: 'Hydrovac vs. Traditional Excavation: Which Method Is Right for Your Project?'
 slug: hydrovac-vs-traditional-excavation
-date: 2026-08-27
+date: 2026-08-26
 published: true
 category: Trenchless Excavation
 excerpt: Hydrovac and traditional excavation each offer distinct advantages, depending on a project's scope, location, and goals. Hydrovac provides greater precision around buried utilities and in congested areas, while traditional excavation is often better suited for moving large volumes of soil efficiently. In many cases, using both methods together can provide the right balance of precision, safety, and productivity.
