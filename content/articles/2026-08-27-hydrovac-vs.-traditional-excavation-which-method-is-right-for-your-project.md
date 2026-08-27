@@ -17,7 +17,7 @@ Traditional excavation uses equipment such as excavators and backhoes to mechani
 
 So, which method is right for your project? 
 
-Hydrovac excavation is often the better choice when precision is critical, buried utilities are present, or crews need to work in a congested or sensitive area. Traditional excavation is typically more practical when large volumes of soil need to be removed and underground conflicts are limited. 
+Hydrovac excavation is often the better choice when precision is critical, buried utilities are present, or crews need to work in a congested or sensitive area. Traditional excavation is typically more practical when large volumes of soil need to be removed, and underground conflicts are limited. 
 
 For many projects, the most effective solution may even involve both. 
 
@@ -119,7 +119,7 @@ This is where Hydrovac adds real value. The goal is not simply to remove soil. I
 
 Hydrovac is not intended to replace mechanical excavation on every project. 
 
-Traditional excavation is often the more practical choice when large quantities of soil need to be removed and sufficient space is available to operate heavy equipment safely. 
+Traditional excavation is often the more practical choice when large quantities of soil need to be removed, and sufficient space is available to operate heavy equipment safely. 
 
 Common examples include: 
 
