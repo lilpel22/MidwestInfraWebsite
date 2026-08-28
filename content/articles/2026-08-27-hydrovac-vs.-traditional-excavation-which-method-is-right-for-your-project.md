@@ -53,7 +53,7 @@ Traditional excavation physically cuts and removes soil, while Hydrovac loosens 
 
 That distinction becomes especially important when crews are working near buried gas, electrical, water, sewer, or communications infrastructure. 
 
-Hydrovac vs. Traditional Excavation at a Glance 
+## Hydrovac vs. Traditional Excavation at a Glance 
 
 | **Consideration** | **Hydrovac Excavation** | **Traditional Excavation** |
 | **Precision** | High | Moderate |
