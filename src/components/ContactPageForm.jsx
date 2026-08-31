@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 const contactDetails = [
   { label: 'Phone', value: '(810) 721-1933', href: 'tel:8107211933' },
   { label: 'Email', value: 'Miradmin@mwcc.biz', href: 'mailto:Miradmin@mwcc.biz' },
-  { label: 'Address', value: '115 E Capac Rd, Imlay City, MI 48444', href: 'https://maps.google.com/?q=115+E+Capac+Rd+Imlay+City+MI+48444' },
+  { label: 'Address', value: '115 E Capac Rd, Suite B, Imlay City, MI 48444', href: 'https://maps.google.com/?q=115+E+Capac+Rd+Suite+B+Imlay+City+MI+48444' },
   { label: 'Hours', value: 'Mon–Fri 8am–4:30pm' },
 ]
 

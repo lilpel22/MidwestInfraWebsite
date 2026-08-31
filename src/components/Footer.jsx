@@ -24,7 +24,7 @@ export default function Footer() {
               across the State of Michigan.
             </p>
             <address className="not-italic font-roboto text-xs text-white/55 leading-relaxed mb-4">
-              115 E Capac Rd, Imlay City, MI 48444
+              115 E Capac Rd, Suite B, Imlay City, MI 48444
             </address>
             <p className="font-roboto text-xs text-white/45 leading-relaxed mb-5">
               A division of{' '}
@@ -102,12 +102,12 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://maps.google.com/?q=115+E+Capac+Rd+Imlay+City+MI+48444"
+                  href="https://maps.google.com/?q=115+E+Capac+Rd+Suite+B+Imlay+City+MI+48444"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-roboto text-sm text-white/65 hover:text-white transition-colors"
                 >
-                  115 E Capac Rd, Imlay City, MI
+                  115 E Capac Rd, Suite B, Imlay City, MI
                 </a>
               </li>
               <li className="font-roboto text-sm text-white/65">Mon–Fri: 8am–4:30pm</li>

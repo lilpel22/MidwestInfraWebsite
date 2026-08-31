@@ -81,7 +81,7 @@ and private industrial clients.
 
 - Email: Miradmin@mwcc.biz
 
-- Address: 115 E Capac Rd, Imlay City, MI 48444
+- Address: 115 E Capac Rd, Suite B, Imlay City, MI 48444
 
 - Hours: Mon–Fri 8am–4:30pm
 
