@@ -114,6 +114,8 @@ A CCTV sewer inspection uses a camera system to provide a visual assessment of c
 
 After jetting, CCTV can provide a clearer view of the pipe because material that previously covered or obscured the surface has been removed. Crews and infrastructure owners can then better evaluate the condition of the asset and determine whether additional maintenance, repair, or rehabilitation may be needed. 
 
+![manhole in the road](/images/articles/street-grate-with-tree-shadows-on-asphalt-2026-09-22-13-32-19-utc.jpg)
+
 ## What Can Sewer Jetting Remove? 
 
 ### Root Intrusion 
