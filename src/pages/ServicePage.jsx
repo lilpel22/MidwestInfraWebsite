@@ -153,7 +153,7 @@ export default function ServicePage() {
                   Contact our team for a site assessment and project scope.
                 </p>
                 <Link
-                  to="/contact"
+                  to="/contact/"
                   className="inline-flex items-center px-6 py-3 border border-white/40 text-white font-oswald text-xs tracking-[0.22em] uppercase font-semibold hover:border-white hover:bg-white/10 transition-colors duration-200"
                 >
                   Get a Quote
@@ -344,7 +344,7 @@ export default function ServicePage() {
           </div>
           <div className="flex flex-col sm:flex-row gap-4 flex-none">
             <Link
-              to="/contact"
+              to="/contact/"
               className="px-8 py-3.5 bg-secondary text-white font-oswald text-sm tracking-[0.18em] uppercase font-semibold hover:bg-secondary-dark transition-colors duration-200 text-center"
             >
               Get a Quote
@@ -373,7 +373,7 @@ export default function ServicePage() {
             {otherServices.map((s) => (
               <Link
                 key={s.slug}
-                to={`/services/${s.slug}`}
+                to={`/services/${s.slug}/`}
                 className="group flex overflow-hidden border border-gray-100 hover:border-primary/20 transition-all duration-200 hover:shadow-md"
               >
                 <div className="relative w-40 flex-none overflow-hidden">

@@ -17,7 +17,11 @@ import { useEffect } from 'react'
 export function useDocumentMeta({ title, description, path, noindex = false }) {
   useEffect(() => {
     const SITE = 'https://www.midwestinfra.biz'
-    const url = `${SITE}${path || ''}`
+    // Netlify serves prerendered pages as /about/index.html and 301s /about
+    // to /about/, so canonicals must use the trailing-slash form or Google
+    // sees them as redirects ("Page with redirect" in Search Console).
+    const normalized = (path || '/').endsWith('/') ? path || '/' : `${path}/`
+    const url = `${SITE}${normalized}`
 
     if (title) document.title = title
     setMeta('name', 'description', description)

@@ -73,7 +73,7 @@ export default function Hero() {
               Our Services
             </a>
             <Link
-              to="/contact"
+              to="/contact/"
               className="px-8 py-4 border border-white/40 text-white font-oswald text-sm font-semibold tracking-[0.22em] uppercase hover:border-white hover:bg-white/10 transition-colors duration-200"
             >
               Get a Quote

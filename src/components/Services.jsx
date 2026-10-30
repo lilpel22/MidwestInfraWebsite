@@ -117,7 +117,7 @@ export default function Services() {
               transition={{ duration: 0.6, delay: i * 0.14 }}
             >
             <Link
-              to={`/services/${service.slug}`}
+              to={`/services/${service.slug}/`}
               aria-label={`Learn more about ${service.title}`}
               className="group bg-white border border-gray-200 hover:border-primary/25 hover:shadow-2xl transition-all duration-500 flex flex-col overflow-hidden h-full"
             >
