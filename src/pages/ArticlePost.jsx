@@ -49,7 +49,7 @@ export default function ArticlePost() {
             className="flex items-center gap-3 mb-6"
           >
             <Link
-              to="/articles"
+              to="/articles/"
               className="font-oswald text-[10px] tracking-[0.32em] uppercase text-white/60 hover:text-secondary transition-colors"
             >
               ← All Articles
@@ -121,7 +121,7 @@ export default function ArticlePost() {
                 </h2>
               </div>
               <Link
-                to="/articles"
+                to="/articles/"
                 className="font-oswald text-[11px] tracking-[0.22em] uppercase text-primary hover:text-secondary transition-colors font-medium"
               >
                 View All Articles →

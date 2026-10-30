@@ -45,7 +45,7 @@ export default function LatestArticles() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <Link
-              to="/articles"
+              to="/articles/"
               className="inline-flex items-center gap-2 font-oswald text-[11px] tracking-[0.22em] uppercase text-primary font-medium hover:text-secondary transition-colors"
             >
               View All Articles

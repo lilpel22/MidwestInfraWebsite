@@ -116,7 +116,7 @@ export default function Contact() {
 
             {/* Mobile-only CTA — replaces the form on small screens */}
             <Link
-              to="/contact"
+              to="/contact/"
               className="lg:hidden mt-10 inline-flex w-full items-center justify-center px-8 py-4 bg-secondary text-white font-oswald text-sm font-semibold tracking-[0.22em] uppercase hover:bg-secondary-dark transition-colors duration-200"
             >
               Contact Us

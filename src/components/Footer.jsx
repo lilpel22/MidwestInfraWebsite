@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom'
 import logo from '../../logos/Midwest Infra logo1.png'
 
 const serviceLinks = [
-  { label: 'Sprayroq Structural Coatings', to: '/services/sprayroq-coatings' },
-  { label: 'High-Pressure Hot Water Sewer Jetting', to: '/services/sewer-jetting' },
-  { label: 'Hydrovac Services', to: '/services/hydrovac' },
+  { label: 'Sprayroq Structural Coatings', to: '/services/sprayroq-coatings/' },
+  { label: 'High-Pressure Hot Water Sewer Jetting', to: '/services/sewer-jetting/' },
+  { label: 'Hydrovac Services', to: '/services/hydrovac/' },
 ]
 
 export default function Footer() {
@@ -74,7 +74,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <Link
-                  to="/articles"
+                  to="/articles/"
                   onClick={() => window.scrollTo({ top: 0, behavior: 'instant' })}
                   className="font-roboto text-sm text-white/65 hover:text-white transition-colors"
                 >

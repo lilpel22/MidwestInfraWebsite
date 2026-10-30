@@ -7,17 +7,17 @@ const serviceItems = [
   {
     label: 'Sprayroq Structural Coatings',
     description: 'SprayWall® polyurethane lining',
-    to: '/services/sprayroq-coatings',
+    to: '/services/sprayroq-coatings/',
   },
   {
     label: 'High-Pressure Hot Water Sewer Jetting',
     description: 'Hot water jetting & cleaning',
-    to: '/services/sewer-jetting',
+    to: '/services/sewer-jetting/',
   },
   {
     label: 'Hydrovac Services',
     description: 'Non-destructive excavation',
-    to: '/services/hydrovac',
+    to: '/services/hydrovac/',
   },
 ]
 
@@ -160,18 +160,18 @@ export default function Header({ forceScrolled = false }) {
             </AnimatePresence>
           </div>
 
-          <Link to="/articles" className={`font-oswald text-sm font-medium tracking-[0.18em] uppercase transition-colors duration-200 ${navText}`}>
+          <Link to="/articles/" className={`font-oswald text-sm font-medium tracking-[0.18em] uppercase transition-colors duration-200 ${navText}`}>
             Articles
           </Link>
-          <Link to="/about" className={`font-oswald text-sm font-medium tracking-[0.18em] uppercase transition-colors duration-200 ${navText}`}>
+          <Link to="/about/" className={`font-oswald text-sm font-medium tracking-[0.18em] uppercase transition-colors duration-200 ${navText}`}>
             About
           </Link>
-          <Link to="/contact" className={`font-oswald text-sm font-medium tracking-[0.18em] uppercase transition-colors duration-200 ${navText}`}>
+          <Link to="/contact/" className={`font-oswald text-sm font-medium tracking-[0.18em] uppercase transition-colors duration-200 ${navText}`}>
             Contact Us
           </Link>
 
           <Link
-            to="/contact"
+            to="/contact/"
             className="ml-2 px-7 py-3 bg-secondary text-white font-oswald text-sm font-semibold tracking-[0.18em] uppercase hover:bg-secondary-dark transition-colors duration-200"
           >
             Get a Quote
@@ -232,7 +232,7 @@ export default function Header({ forceScrolled = false }) {
               </div>
 
               <Link
-                to="/articles"
+                to="/articles/"
                 onClick={close}
                 className={`font-oswald text-lg tracking-[0.15em] uppercase hover:text-secondary transition-colors ${
                   isScrolled ? 'text-gray-900' : 'text-white'
@@ -241,7 +241,7 @@ export default function Header({ forceScrolled = false }) {
                 Articles
               </Link>
               <Link
-                to="/about"
+                to="/about/"
                 onClick={close}
                 className={`font-oswald text-lg tracking-[0.15em] uppercase hover:text-secondary transition-colors ${
                   isScrolled ? 'text-gray-900' : 'text-white'
@@ -250,7 +250,7 @@ export default function Header({ forceScrolled = false }) {
                 About
               </Link>
               <Link
-                to="/contact"
+                to="/contact/"
                 onClick={close}
                 className={`font-oswald text-lg tracking-[0.15em] uppercase hover:text-secondary transition-colors ${
                   isScrolled ? 'text-gray-900' : 'text-white'
@@ -259,7 +259,7 @@ export default function Header({ forceScrolled = false }) {
                 Contact Us
               </Link>
               <Link
-                to="/contact"
+                to="/contact/"
                 onClick={close}
                 className="mt-2 py-3.5 bg-secondary text-white font-oswald text-sm font-semibold tracking-[0.18em] uppercase text-center hover:bg-secondary-dark transition-colors duration-200"
               >
